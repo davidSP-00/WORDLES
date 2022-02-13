@@ -2,7 +2,13 @@ import React, { useState } from 'react'
 import { Pressable } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
 
-export const IconButton = () => {
+interface Props {
+    name: any;
+    size?: number;
+    onPress?: () => {};
+}
+
+export const IconButton = ({name,size=32,onPress}:Props) => {
 
     const [color, setColor] = useState('white')
     const pressHandler = () => {
@@ -12,13 +18,10 @@ export const IconButton = () => {
   
         setColor('white');
     }
-    const onPress = () => {
-   /* alert('Presionado') */
-    }
 
   return (
-    <Pressable style={{justifyContent:'center'}} onPressIn={pressHandler} onPressOut={unpressHandler}>
-        <Ionicons name="md-checkmark-circle" size={32} color={color} style={{ textAlignVertical: 'center' }}  />
+    <Pressable style={{justifyContent:'center'}} onPressIn={pressHandler} onPressOut={unpressHandler} onPress={onPress}>
+        <Ionicons name={name} size={size} color={color} style={{ textAlignVertical: 'center' }}  />
     </Pressable>
   )
 }

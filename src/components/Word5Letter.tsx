@@ -34,8 +34,10 @@ const styles = StyleSheet.create({
   
     inputLetter: {
   
-      backgroundColor: '#FBFBFB',
-      borderWidth: 2,
+      backgroundColor: '#f7f7f7',
+      fontWeight:'bold',
+      color:'#666666',
+      borderWidth: 1,
       borderRadius: 5,
       fontSize: Dimensions.get('window').width / 10,
       textAlign: 'center',

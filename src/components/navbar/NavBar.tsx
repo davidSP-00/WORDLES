@@ -6,9 +6,9 @@ export const NavBar = () => {
   return (
     <View style={styles.navbar}>
 
-        <IconButton/>
+        <IconButton name="menu" />
         <Text style={styles.navbarText}>WORDLES</Text>
-        <IconButton/>
+        <IconButton  name="cog" />
       </View>
   )
 }
@@ -16,10 +16,13 @@ const styles = StyleSheet.create({
     
     navbar: {
       height: '8%',
-      backgroundColor: 'red',
+      backgroundColor: 'transparent',
       width: '100%',
       flexDirection: 'row',
       justifyContent: 'space-around',
+      borderBottomWidth:2,
+      borderBottomColor: '#d8d6d6',
+      marginBottom:'8%'
     },
   
     navbarText: {
