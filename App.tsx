@@ -1,12 +1,15 @@
 
-import { Dimensions, Platform, SafeAreaView, StyleSheet, Text, StatusBar , View } from 'react-native';
-
+import { Dimensions, Platform, SafeAreaView, StyleSheet, Text, StatusBar , View, Button } from 'react-native';
 export default function App() {
 
-  
   return (
     <SafeAreaView style={styles.container}>
-      
+      <View style={styles.navbar} >
+      <Button title="fds" onPress={()=>{}}>Menu</Button>
+      <Text style={styles.navbarText}>WORDLES</Text>
+      <Button title="fds" onPress={()=>{}}>Opciones</Button>
+      </View>
+  
       <View style={styles.wordContainer}>
       <Text style={styles.inputLetter}>D</Text>
       <Text style={styles.inputLetter}>A</Text>
@@ -65,6 +68,20 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     flexDirection: 'row',
   },
+  navbar:{
+    backgroundColor:'red',
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent:'space-around',
+  },
+
+  navbarText:{
+    color: '#fff',
+    textAlignVertical: 'center',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  
   inputLetter:{
 
     backgroundColor: '#FBFBFB',
