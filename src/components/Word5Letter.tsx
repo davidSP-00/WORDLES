@@ -1,6 +1,6 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { Animated, Dimensions, StyleSheet, Text, View } from 'react-native';
-
+import React, { useEffect, useRef, useState } from 'react'
+import { Dimensions, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
+import * as Animatable from 'react-native-animatable';
 interface IProps {
   word: string;
 }
@@ -9,35 +9,42 @@ interface IProps {
 export const Word5Letter = ({ word }: IProps) => {
 
   const firstUpdate = useRef(true);
-  const [{ l1,l2,l3,l4,l5}, setLetter] = useState<any>({ l1: '', l2: '', l3: '', l4: '', l5: '' });
+  const ref=useRef<any>(null);
 
- 
+  const bounce = () =>{
+    ref.current?.bounce();
+  }
 
+  
 
   useEffect(() => {
-    setLetter((prev:any)=>{
-      return{
-        l1: word[0],
-        l2: word[1],
-        l3: word[2],
-        l4: word[3],
-        l5: word[4],
-      }
-    });
     if (word.includes('&')) {
       alert('animation')
     }
   }, [word])
+  
+
+  useEffect(() => {
+    if (firstUpdate.current) {
+      firstUpdate.current = false;
+      return;
+    }else{
+      
+    bounce();
+    }
+  }, [word[0]])
 
 
 
   return (
     <View style={styles.wordContainer}>
-        <Text style={styles.inputLetter}>{l1}</Text>
-      <Text style={styles.inputLetter}>{l2}</Text>
-      <Text style={styles.inputLetter}>{l3}</Text>
-      <Text style={styles.inputLetter}>{l4}</Text>
-      <Text style={styles.inputLetter}>{l5}</Text>
+    <Animatable.View ref={ref}>
+        <Text style={styles.inputLetter}>{word[0]}</Text>
+        </Animatable.View>
+      <Text style={styles.inputLetter}>{word[1]}</Text>
+      <Text style={styles.inputLetter}>{word[2]}</Text>
+      <Text style={styles.inputLetter}>{word[3]}</Text>
+      <Text style={styles.inputLetter}>{word[4]}</Text>
     </View>
   )
 }
