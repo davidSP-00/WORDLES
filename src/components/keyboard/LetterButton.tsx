@@ -1,6 +1,6 @@
 
-import { Button, Dimensions, Pressable, Text, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import {  Dimensions, Pressable, Text, View } from 'react-native';
+import { button } from './keyboard.style';
 
 interface Props {
 
@@ -20,14 +20,7 @@ export const LetterButton = ({ actualNumber, title, setWord }: Props) => {
   }
   return (
     <Pressable style={{ justifyContent: 'center' }} onPress={setW}>
-      <View style={{
-        justifyContent: 'center',
-        height: Dimensions.get('window').width / 7,
-        width: Dimensions.get('window').width /11.5,
-        margin:2,
-        borderRadius: 5,
-        backgroundColor: '#AEAEAE'
-      }}>
+      <View  style={[button.buttonView,button.letterButtonView]}>
 
         <Text style={
           {

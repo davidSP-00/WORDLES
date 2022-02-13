@@ -1,6 +1,6 @@
 
 import { Dimensions, Pressable, Text, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { button } from './keyboard.style';
 
 interface Props {
 
@@ -23,14 +23,7 @@ export const EnterButton = ({ actualNumber, setWord, setActualNumber }: Props) =
     }
     return (
         <Pressable style={{ justifyContent: 'center' }} onPress={setW}>
-            <View style={{
-                justifyContent: 'center',
-                height: Dimensions.get('window').width /  7,
-                width: Dimensions.get('window').width /5.45,
-                margin: 2,
-                borderRadius: 5,
-                backgroundColor: '#AEAEAE'
-            }}>
+            <View style={[button.buttonView,button.enterButtonView]}>
                 <Text style={
                     {
                         color: 'white',
