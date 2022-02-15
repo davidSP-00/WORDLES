@@ -15,5 +15,17 @@ letterButtonView:{
 enterButtonView:{
     width: Dimensions.get('window').width /5.45,
 }
+,texStyle:{
+    color: 'white',
+    fontWeight:'bold',
+    fontSize: Dimensions.get('window').width /20,
+    textAlign:'center'
+},
+  enterStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: Dimensions.get('window').width / 25,
+    textAlign: 'center'
+}
 });
 export {button}

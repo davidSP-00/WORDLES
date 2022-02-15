@@ -3,7 +3,7 @@ import { View } from 'react-native'
 import { DeleteButton } from '../components/keyboard/DeleteButton'
 import { EnterButton } from '../components/keyboard/EnterButton'
 import { LetterButton } from '../components/keyboard/LetterButton'
-import { Word5Letter } from '../components/Word5Letter'
+import { Word5Letter } from '../components/word/Word5Letter'
 
 export const Screen5Letters = () => {
     const [actualNumber, setActualNumber] = useState(1)
@@ -14,11 +14,11 @@ export const Screen5Letters = () => {
 
         <>
        
-            <Word5Letter word={word1} />
-            <Word5Letter word={word2} />
-            <Word5Letter word={word3} />
-            <Word5Letter word={word4} />
-            <Word5Letter word={word5} />
+            <Word5Letter word={word1} setActualNumber={setActualNumber}/>
+            <Word5Letter word={word2} setActualNumber={setActualNumber}/>
+            <Word5Letter word={word3} setActualNumber={setActualNumber}/>
+            <Word5Letter word={word4} setActualNumber={setActualNumber}/>
+            <Word5Letter word={word5} setActualNumber={setActualNumber}/>
 
             <View style={{ flexDirection: 'row',
         marginTop:'10%'}}>
@@ -47,7 +47,7 @@ export const Screen5Letters = () => {
             </View>
 
             <View style={{ flexDirection: 'row',}} >
-            <EnterButton actualNumber={actualNumber} setWord={setWord} setActualNumber={setActualNumber}></EnterButton>
+            <EnterButton actualNumber={actualNumber} setWord={setWord}></EnterButton>
             <LetterButton actualNumber={actualNumber} setWord={setWord} title='Z'></LetterButton>
             <LetterButton actualNumber={actualNumber} setWord={setWord} title='X'></LetterButton>
             <LetterButton actualNumber={actualNumber} setWord={setWord} title='C'></LetterButton>

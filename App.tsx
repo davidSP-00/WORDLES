@@ -1,7 +1,6 @@
 
-import { Platform, SafeAreaView, StyleSheet, Text, StatusBar, View, Button, Pressable, TouchableNativeFeedback } from 'react-native';
-import { useState } from 'react';
-import { Word5Letter } from './src/components/Word5Letter';
+import { Platform, SafeAreaView, StyleSheet, StatusBar } from 'react-native';
+
 import { Screen5Letters } from './src/pages/Screen5Letters';
 import { NavBar } from './src/components/navbar/NavBar';
 export default function App() {

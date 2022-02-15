@@ -1,5 +1,5 @@
 
-import {  Dimensions, Pressable, Text, View } from 'react-native';
+import {   Pressable, Text, View } from 'react-native';
 import { button } from './keyboard.style';
 
 interface Props {
@@ -21,14 +21,8 @@ export const LetterButton = ({ actualNumber, title, setWord }: Props) => {
   return (
     <Pressable style={{ justifyContent: 'center' }} onPress={setW}>
       <View  style={[button.buttonView,button.letterButtonView]}>
-
         <Text style={
-          {
-            color: 'white',
-            fontWeight:'bold',
-            fontSize: Dimensions.get('window').width /20,
-            textAlign:'center'
-          }
+          button.texStyle
         }>{title}</Text>
       </View>
     </Pressable>
