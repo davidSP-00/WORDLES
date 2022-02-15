@@ -1,14 +1,31 @@
 
+import { useEffect, useState } from 'react';
 import {   Pressable, Text, View } from 'react-native';
+import { Props5Letters } from '../../pages/Screen5Letters';
 import { button } from './keyboard.style';
 
 interface Props {
 
   actualNumber: number;
   title: string;
+  words:Props5Letters;
   setWord: React.Dispatch<any>
 }
-export const LetterButton = ({ actualNumber, title, setWord }: Props) => {
+interface StyleProps{
+  letterStyle:"letterNormal"|"letterPlayed"
+}
+export const LetterButton = ({ actualNumber, title,words, setWord }: Props) => {
+  const [style, setStyle] = useState<StyleProps>({
+    letterStyle:"letterNormal"
+  });
+  useEffect(() => {
+    for (const key in words){
+      if((words as any)[key].includes(title)){
+        setStyle({letterStyle:"letterPlayed"});
+      }
+    }
+  }, [actualNumber])
+  
 
   const setW = () => {
     setWord((prev: any) => {
@@ -20,11 +37,11 @@ export const LetterButton = ({ actualNumber, title, setWord }: Props) => {
   }
   return (
     <Pressable style={{ justifyContent: 'center' }} onPress={setW}>
-      <View  style={[button.buttonView,button.letterButtonView]}>
-        <Text style={
-          button.texStyle
+      
+        <Text style={[button.buttonView,button[style.letterStyle]]
+          
         }>{title}</Text>
-      </View>
+    
     </Pressable>
   );
 }

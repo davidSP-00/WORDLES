@@ -20,7 +20,7 @@ export const Word5Letter = ( {word,setActualNumber} : IProps) => {
     <View style={styles.wordContainer}>
       {
       Array.from(Array(5).keys()).map((key)=>(
-        <LetterInput key={key} letter={word[key]}></LetterInput>
+        <LetterInput key={key} letter={word[key]} word={word} position={key}></LetterInput>
       ))
       }
     </View>

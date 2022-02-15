@@ -17,9 +17,9 @@ export const DeleteButton = ({ actualNumber, setWord }: Props) => {
     }
     return (
         <Pressable style={{ justifyContent: 'center' }}  onPress={setW}>
-            <View style={[button.buttonView,button.letterButtonView]}>
+            <View style={[button.buttonView,button.letterNormal,]}>
 
-                <Ionicons name="backspace-outline" size={32} style={{ textAlignVertical: 'center' }} color='white'/>
+                <Ionicons name="backspace-outline" size={32} style={{ textAlignVertical: 'center',alignSelf:'center' }} color='white'/>
 
             </View>
         </Pressable>

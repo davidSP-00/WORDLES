@@ -21,10 +21,7 @@ export const EnterButton = ({ actualNumber, setWord }: Props) => {
     }
     return (
         <Pressable style={{ justifyContent: 'center' }} onPress={setW}>
-            <View style={[button.buttonView,button.enterButtonView]}>
-                <Text style={button.enterStyle
-                }>JUGAR</Text>
-            </View>
+                <Text style={[button.buttonView,button.enterStyle]}>JUGAR</Text>
         </Pressable>
     );
 }
