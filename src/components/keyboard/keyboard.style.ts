@@ -16,6 +16,12 @@ buttonView:{
 ,letterNormal:{
     backgroundColor: '#818384'
 },
+letterWarning:{
+    backgroundColor: '#c9b458'
+},
+letterCorrect:{
+    backgroundColor: '#6aaa64'
+},
 letterPlayed:{
     backgroundColor: '#3a3a3c'
 },
