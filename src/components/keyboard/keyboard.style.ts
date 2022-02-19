@@ -9,12 +9,12 @@ buttonView:{
     width: Dimensions.get('window').width /11.5,
     fontSize: Dimensions.get('window').width /20,
     fontWeight:'bold',
-    color: '#eeeeee',
+    color: 'white',
     margin:2,
     borderRadius: 5,
 }
 ,letterNormal:{
-    backgroundColor: '#818384'
+    backgroundColor: 'rgb(165,165,165)'
 },
 letterWarning:{
     backgroundColor: '#c9b458'
@@ -27,8 +27,7 @@ letterPlayed:{
 },
   enterStyle: {
     width: Dimensions.get('window').width /5.45,
-    backgroundColor: '#818384',
-    color: '#eeeeee',
+    backgroundColor: 'rgb(165,165,165)',
     fontSize: Dimensions.get('window').width / 25,
     textAlign: 'center'
 }

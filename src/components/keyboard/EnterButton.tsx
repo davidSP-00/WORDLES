@@ -14,10 +14,6 @@ interface Props {
 }
 export const EnterButton = ({ actualNumber, setWord }: Props) => {
 
-    const [modal, setModalState] = useState({
-        visible: false,
-        message: ''
-    });
     const {wordWin} = useContext(WordContext);
     const setW = () => {
 

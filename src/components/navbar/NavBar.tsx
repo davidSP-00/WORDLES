@@ -1,12 +1,50 @@
 import React from 'react'
-import { Dimensions, StyleSheet, Text, View } from 'react-native'
+import { Animated, Dimensions, Platform, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { IconButton } from '../IconButton'
 
-export const NavBar = () => {
+export const NavBar = ({setShowMenu,scaleValue,showMenu,offsetValue,closeButtonOffset}:any) => {
   return (
     <View style={styles.navbar}>
+<TouchableOpacity onPress={() => {
+            // Do Actions Here....
+            // Scaling the view...
+            console.log('Pressed')
+            Animated.timing(scaleValue, {
+              toValue: showMenu ? 1 : 0.88,
+              duration: 300,
+              useNativeDriver: true
+            })
+              .start()
 
-        <IconButton name="menu" />
+            Animated.timing(offsetValue, {
+              // YOur Random Value...
+              toValue: showMenu ? 0 : 230,
+              duration: 300,
+              useNativeDriver: true
+            })
+              .start()
+
+            Animated.timing(closeButtonOffset, {
+              // YOur Random Value...
+              toValue: !showMenu ? -30 : 0,
+              duration: 300,
+              useNativeDriver: true
+            })
+              .start()
+
+            setShowMenu(!showMenu);
+          }}>
+
+            {/* <Image source={showMenu ? require( './src/assets/close.png') : require( './src/assets/menu.png')} style={{
+              width: 20,
+              height: 20,
+              tintColor: 'black',
+              marginTop: 40,
+
+            }}></Image> */}
+
+           <IconButton name="menu" />
+          </TouchableOpacity>
         <Text style={styles.navbarText}>WORDLES</Text>
         <IconButton  name="cog" />
       </View>
@@ -19,15 +57,16 @@ const styles = StyleSheet.create({
       backgroundColor: 'transparent',
       width: '100%',
       flexDirection: 'row',
+      alignItems: 'center',
       justifyContent: 'space-around',
       borderBottomWidth:2,
       borderBottomColor: '#d8d6d6',
-      marginBottom:'8%'
+      marginBottom:'8%',
+      marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
     },
   
     navbarText: {
-      color: '#fff',
-      textAlignVertical: 'center',
+      
       fontSize: 20,
       fontWeight: 'bold',
     },

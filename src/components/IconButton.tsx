@@ -10,7 +10,7 @@ interface Props {
 
 export const IconButton = ({name,size=32,onPress}:Props) => {
 
-    const [color, setColor] = useState('white')
+    const [color, setColor] = useState('black');
     const pressHandler = () => {
         setColor('grey');
     }
@@ -20,8 +20,6 @@ export const IconButton = ({name,size=32,onPress}:Props) => {
     }
 
   return (
-    <Pressable style={{justifyContent:'center'}} onPressIn={pressHandler} onPressOut={unpressHandler} onPress={onPress}>
         <Ionicons name={name} size={size} color={color} style={{ textAlignVertical: 'center' }}  />
-    </Pressable>
   )
 }
