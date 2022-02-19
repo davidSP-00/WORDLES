@@ -53,7 +53,6 @@ export const LetterButton = ({ actualNumber, title, words,style, setWord }: Prop
     } */
   }, [style])
 
-console.log(style)
   const setW = () => {
     setWord((prev: any) => {
       if (prev['word' + actualNumber].length == 5) {

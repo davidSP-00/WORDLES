@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Dimensions, StyleSheet, Text, View } from 'react-native'
 import { IconButton } from '../IconButton'
 
 export const NavBar = () => {
@@ -15,7 +15,7 @@ export const NavBar = () => {
 const styles = StyleSheet.create({
     
     navbar: {
-      height: '8%',
+      height: Dimensions.get('window').height * 0.08,
       backgroundColor: 'transparent',
       width: '100%',
       flexDirection: 'row',

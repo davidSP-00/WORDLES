@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from 'react'
+import React, {  useState } from 'react'
 import { View } from 'react-native'
 import { WordContext } from '../components/context/WordContext'
 import { DeleteButton } from '../components/keyboard/DeleteButton'

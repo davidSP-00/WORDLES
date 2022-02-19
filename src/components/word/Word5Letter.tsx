@@ -33,7 +33,11 @@ export const Word5Letter = ({ word, words, setActualNumber, setKeyboardLines }: 
           prev.keyboardLine1.map((item: keyboardProps) => {
             if (item.letter === letter) {
               if (wordWin.includes(letter)) {
-                item.style = "letterWarning";
+                
+                if (item.style == 'letterCorrect') {
+                }else{
+                  item.style = "letterWarning";
+                }
                 [...wordWin].forEach(
                   (c, index) => {
                     if (c == word.charAt(index)) {
@@ -43,11 +47,9 @@ export const Word5Letter = ({ word, words, setActualNumber, setKeyboardLines }: 
                 )
 
               } else {
-                if (item.style == 'letterCorrect') {
-                }else{
                   
                   item.style = "letterPlayed";
-                }
+                
 
               }
             }

@@ -1,8 +1,10 @@
 
-import { useContext } from 'react';
-import { Dimensions, Pressable, Text, View } from 'react-native';
+import { useContext, useState } from 'react';
+import { Dimensions, Pressable, StatusBar, Text } from 'react-native';
+import { showMessage } from 'react-native-flash-message';
 import { Words5 } from '../../data/5Words';
 import { WordContext } from '../context/WordContext';
+import { messageOptions } from '../modals/message.style';
 import { button } from './keyboard.style';
 
 interface Props {
@@ -12,6 +14,10 @@ interface Props {
 }
 export const EnterButton = ({ actualNumber, setWord }: Props) => {
 
+    const [modal, setModalState] = useState({
+        visible: false,
+        message: ''
+    });
     const {wordWin} = useContext(WordContext);
     const setW = () => {
 
@@ -26,9 +32,19 @@ export const EnterButton = ({ actualNumber, setWord }: Props) => {
                     return { ...prev, ['word' + (actualNumber )]: actualword + '&' };
                 
                 }else{
-                    alert('Palabra no en el diccionario')
+
+                    showMessage({
+                        ...messageOptions,
+                        message: "La palabra no se encuentra en el diccionario.",
+                       
+                      });
                 }
                    
+             }else{
+                showMessage({
+                    ...messageOptions,
+                    message: "La palabra debe tener 5 letras",
+                  });
              }
 
             return prev;
@@ -36,8 +52,10 @@ export const EnterButton = ({ actualNumber, setWord }: Props) => {
 
     }
     return (
+        <>
         <Pressable style={{ justifyContent: 'center' }} onPress={setW}>
                 <Text style={[button.buttonView,button.enterStyle]}>JUGAR</Text>
         </Pressable>
+        </>
     );
 }

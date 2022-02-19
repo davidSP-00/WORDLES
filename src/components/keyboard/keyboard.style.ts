@@ -1,6 +1,6 @@
 import { Dimensions, StyleSheet } from "react-native";
 
- const button=StyleSheet.create<any>({
+ const button=StyleSheet.create({
 buttonView:{
     justifyContent: 'center',
     textAlignVertical: 'center',
