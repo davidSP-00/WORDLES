@@ -4,10 +4,10 @@ import { Image, ImageSourcePropType, Text, TouchableOpacity, View } from 'react-
 export interface Props{
     currentTab:string;
     title:string;
-    image:string;
+    src:ImageSourcePropType;
     setCurrentTab: React.Dispatch<React.SetStateAction<string>>;
 }
-export const TabButton = ({currentTab, setCurrentTab, title, image}:Props) => {
+export const TabButton = ({currentTab, setCurrentTab, title, src}:Props) => {
   return (
     <TouchableOpacity onPress={() => {
         if (title == "LogOut") {
@@ -27,16 +27,16 @@ export const TabButton = ({currentTab, setCurrentTab, title, image}:Props) => {
           marginTop: 15
         }}>
   
-          <Image source={require( `../../assets/${image}`)} style={{
+          <Image source={src} style={{
             width: 25, height: 25,
-            tintColor: currentTab == title ? "#5359D1" : "white"
+            tintColor: currentTab == title ? "black" : "white"
           }}></Image>
   
           <Text style={{
             fontSize: 15,
             fontWeight: 'bold',
             paddingLeft: 15,
-            color: currentTab == title ? "#5359D1" : "white"
+            color: currentTab == title ? "black" : "white"
           }}>{title}</Text>
   
         </View>

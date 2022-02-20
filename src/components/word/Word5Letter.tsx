@@ -109,18 +109,7 @@ export const Word5Letter = ({ word, words, setActualNumber, setKeyboardLines }: 
         return prev;
       }
       );
-      /* setKeyboardLines((prev:keyboardProps[])=>{
-        [...new Set(word.split(''))].forEach((letter:string)=>{
-          prev.map((item:keyboardProps)=>{
-              if(item.letter===letter){
-                item.style=button.letterStyle;
-                }
-                })
-                
-  
-          });
-        return prev;
-      }) */
+
     }
 
 

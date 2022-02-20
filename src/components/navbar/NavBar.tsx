@@ -10,7 +10,7 @@ export const NavBar = ({setShowMenu,scaleValue,showMenu,offsetValue,closeButtonO
             // Scaling the view...
             console.log('Pressed')
             Animated.timing(scaleValue, {
-              toValue: showMenu ? 1 : 0.88,
+              toValue: showMenu ? 1 : 1,
               duration: 300,
               useNativeDriver: true
             })
@@ -26,7 +26,7 @@ export const NavBar = ({setShowMenu,scaleValue,showMenu,offsetValue,closeButtonO
 
             Animated.timing(closeButtonOffset, {
               // YOur Random Value...
-              toValue: !showMenu ? -30 : 0,
+              toValue: !showMenu ? 0 : 0,
               duration: 300,
               useNativeDriver: true
             })

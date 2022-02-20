@@ -1,5 +1,5 @@
 
-import { Platform, SafeAreaView, StyleSheet, StatusBar, View ,Animated, Image,Text, TouchableOpacity, } from 'react-native';
+import { Platform, SafeAreaView, StyleSheet, StatusBar, Animated } from 'react-native';
 
 import { Screen5Letters } from './src/pages/Screen5Letters';
 import { NavBar } from './src/components/navbar/NavBar';
@@ -7,6 +7,7 @@ import FlashMessage from 'react-native-flash-message';
 import { useState } from 'react';
 import { useRef } from 'react';
 import { SideBar } from './src/components/sidebar/SideBar';
+import { TodayScore } from './src/pages/TodayScore';
 
 
 export default function App() {
@@ -19,71 +20,39 @@ export default function App() {
 
   return (
     <SafeAreaView style={styles.container}>
-  <SideBar currentTab={currentTab} setCurrentTab={setCurrentTab}></SideBar>
+      <FlashMessage position="top" />
+      <SideBar currentTab={currentTab} setCurrentTab={setCurrentTab}></SideBar>
       <Animated.View style={{
         flexGrow: 1,
         backgroundColor: 'white',
         position: 'absolute',
-        top: 0,
+        top: 6,
         bottom: 0,
         left: 0,
         right: 0,
-        borderRadius: showMenu ? 15 : 0,
-        // Transforming View...
+        borderRadius: showMenu ? 5 : 0,
         transform: [
           { scale: scaleValue },
           { translateX: offsetValue }
         ]
       }}>
 
-        {
-          // Menu Button...
-        }
 
         <Animated.View style={{
           transform: [{
             translateY: closeButtonOffset
           }],
-          backgroundColor:'white',
-          alignItems:'center'
+          alignItems: 'center'
         }}>
-          
-                <NavBar setShowMenu={setShowMenu} scaleValue={scaleValue} showMenu={showMenu}
-                offsetValue={offsetValue} closeButtonOffset={closeButtonOffset}></NavBar>
-          <Screen5Letters></Screen5Letters>
-         {/*  <Text style={{
-            fontSize: 30,
-            fontWeight: 'bold',
-            color: 'black',
-            paddingTop: 20
-          }}>{currentTab}</Text>
+          <NavBar setShowMenu={setShowMenu} scaleValue={scaleValue} showMenu={showMenu}
+            offsetValue={offsetValue} closeButtonOffset={closeButtonOffset}></NavBar>
 
-          <Image source={require( './src/assets/photo.jpg')} style={{
-            width: '100%',
-            height: 300,
-            borderRadius: 15,
-            marginTop: 25
-          }}></Image>
-
-          <Text style={{
-            fontSize: 20,
-            fontWeight: 'bold'
-            , paddingTop: 15,
-            paddingBottom: 5
-          }}>Jenna Ezarik</Text>
-
-          <Text style={{
-          }}>Techie, YouTuber, PS Lover, Apple Sheep's Sister</Text> */}
+          {/* <Screen5Letters></Screen5Letters> */}
+          <TodayScore></TodayScore>
         </Animated.View>
 
       </Animated.View>
 
-
-
-
-      
-
-      <FlashMessage position="top" /> 
     </SafeAreaView>
   );
 }

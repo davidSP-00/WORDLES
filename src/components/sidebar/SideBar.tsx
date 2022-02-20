@@ -5,13 +5,14 @@ export interface Props{
     currentTab:string;
     setCurrentTab: React.Dispatch<React.SetStateAction<string>>;
 }
+import images from "../../assets"
 export const SideBar = ({currentTab,setCurrentTab}:Props) => {
   return (
     <View style={{ justifyContent: 'flex-start', padding: 15 }}>
-        <Image source={require( '../../assets/profile.png')} style={{
+        <Image source={images.profile} style={{
           width: 60,
           height: 60,
-          borderRadius: 10,
+          borderRadius: 2,
           marginTop: 8
         }}></Image>
 
@@ -34,15 +35,15 @@ export const SideBar = ({currentTab,setCurrentTab}:Props) => {
             // Tab Bar Buttons....
           }
 
-          <TabButton currentTab={currentTab} title="Home" image="home.png"  setCurrentTab={setCurrentTab}/>
-          <TabButton currentTab={currentTab} title="Search" image="search.png" setCurrentTab={setCurrentTab}/>
-          <TabButton currentTab={currentTab} title="Notification" image="bell.png" setCurrentTab={setCurrentTab}/>
-          <TabButton currentTab={currentTab} title="Settings" image="settings.png" setCurrentTab={setCurrentTab}/>
+          <TabButton currentTab={currentTab} title="Home" src={images.home}  setCurrentTab={setCurrentTab}/>
+          <TabButton currentTab={currentTab} title="Resultado del día" src={images.search} setCurrentTab={setCurrentTab}/>
+          <TabButton currentTab={currentTab} title="Mi Colección" src={images.notification} setCurrentTab={setCurrentTab}/>
+          <TabButton currentTab={currentTab} title="Settings" src={images.settings} setCurrentTab={setCurrentTab}/>
 
         </View>
 
         <View>
-        <TabButton currentTab={currentTab} title="LogOut" image="logout.png" setCurrentTab={setCurrentTab}/>
+        <TabButton currentTab={currentTab} title="LogOut" src={images.logout} setCurrentTab={setCurrentTab}/>
          </View>
 
       </View>
