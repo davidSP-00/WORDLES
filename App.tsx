@@ -1,5 +1,5 @@
 
-import { Platform, SafeAreaView, StyleSheet, StatusBar, Animated } from 'react-native';
+import { Platform, SafeAreaView, StyleSheet, StatusBar, Animated, View} from 'react-native';
 
 import { Screen5Letters } from './src/pages/Screen5Letters';
 import { NavBar } from './src/components/navbar/NavBar';
@@ -8,16 +8,18 @@ import { useState } from 'react';
 import { useRef } from 'react';
 import { SideBar } from './src/components/sidebar/SideBar';
 import { TodayScore } from './src/pages/TodayScore';
+import { Collection } from './src/pages/Collection';
+import { WordContext } from './src/components/context/WordContext';
 
 
 export default function App() {
 
-  const [currentTab, setCurrentTab] = useState("Home");
+  const [currentTab, setCurrentTab] = useState("WORDLE");
   const [showMenu, setShowMenu] = useState(false);
   const offsetValue = useRef(new Animated.Value(0)).current;
-  const scaleValue = useRef(new Animated.Value(1)).current;
   const closeButtonOffset = useRef(new Animated.Value(0)).current;
 
+  const [wordWin, setWordWin] = useState("DAVID")
   return (
     <SafeAreaView style={styles.container}>
       <FlashMessage position="top" />
@@ -32,7 +34,6 @@ export default function App() {
         right: 0,
         borderRadius: showMenu ? 5 : 0,
         transform: [
-          { scale: scaleValue },
           { translateX: offsetValue }
         ]
       }}>
@@ -44,11 +45,21 @@ export default function App() {
           }],
           alignItems: 'center'
         }}>
-          <NavBar setShowMenu={setShowMenu} scaleValue={scaleValue} showMenu={showMenu}
+          <NavBar setShowMenu={setShowMenu}  showMenu={showMenu}
             offsetValue={offsetValue} closeButtonOffset={closeButtonOffset}></NavBar>
-
-          {/* <Screen5Letters></Screen5Letters> */}
+            
+        <WordContext.Provider value={{wordWin,setWordWin}}>
+          <View style={[currentTab=="WORDLE" ? {} : { display: 'none' },{marginTop:'8%'} ]}>
+            <Screen5Letters></Screen5Letters>
+            </View>
+            <View style={currentTab=='Resultado del día' ? {} : { display: 'none' } }>
           <TodayScore></TodayScore>
+           </View>
+           
+           <View style={currentTab=='Mi Colección' ? {} : { display: 'none' } }>
+          <Collection></Collection>
+           </View>
+           </WordContext.Provider>
         </Animated.View>
 
       </Animated.View>

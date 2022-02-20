@@ -4,7 +4,11 @@ import { Score5Letter } from '../components/score/Score5Letter'
 
 export const TodayScore = () => {
     return (
-        <>
+        <View style={
+            {
+                alignItems: 'center',
+            }
+        }>
             <Text style={{
                 marginBottom: Dimensions.get('window').height / 30,
                 fontSize: Dimensions.get('window').width / 15,
@@ -20,7 +24,7 @@ export const TodayScore = () => {
                 width: '100%',
                 flexDirection: 'row',
                 justifyContent: 'space-between',
-                paddingHorizontal: Dimensions.get('window').width / 18,
+                paddingHorizontal: Dimensions.get('window').width / 8,
                 alignItems: 'center',
                 paddingVertical: Dimensions.get('window').height / 10,
             }}>
@@ -79,6 +83,6 @@ export const TodayScore = () => {
             </View>
 
 
-        </>
+        </View>
     )
 }

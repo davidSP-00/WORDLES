@@ -5,19 +5,13 @@ import { Ionicons } from '@expo/vector-icons';
 interface Props {
     name: any;
     size?: number;
+    color?: string;
     onPress?: () => {};
 }
 
-export const IconButton = ({name,size=32,onPress}:Props) => {
+export const IconButton = ({name,size=32,color='black'}:Props) => {
 
-    const [color, setColor] = useState('black');
-    const pressHandler = () => {
-        setColor('grey');
-    }
-    const unpressHandler = () => {
-  
-        setColor('white');
-    }
+   
 
   return (
         <Ionicons name={name} size={size} color={color} style={{ textAlignVertical: 'center' }}  />

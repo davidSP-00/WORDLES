@@ -2,24 +2,23 @@ import React from 'react'
 import { Animated, Dimensions, Platform, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { IconButton } from '../IconButton'
 
-export const NavBar = ({setShowMenu,scaleValue,showMenu,offsetValue,closeButtonOffset}:any) => {
+export const NavBar = ({setShowMenu,showMenu,offsetValue,closeButtonOffset}:any) => {
   return (
     <View style={styles.navbar}>
 <TouchableOpacity onPress={() => {
             // Do Actions Here....
             // Scaling the view...
-            console.log('Pressed')
-            Animated.timing(scaleValue, {
+         /*    Animated.timing(scaleValue, {
               toValue: showMenu ? 1 : 1,
               duration: 300,
               useNativeDriver: true
             })
-              .start()
+              .start() */
 
             Animated.timing(offsetValue, {
               // YOur Random Value...
               toValue: showMenu ? 0 : 230,
-              duration: 300,
+              duration: 200,
               useNativeDriver: true
             })
               .start()
@@ -27,7 +26,7 @@ export const NavBar = ({setShowMenu,scaleValue,showMenu,offsetValue,closeButtonO
             Animated.timing(closeButtonOffset, {
               // YOur Random Value...
               toValue: !showMenu ? 0 : 0,
-              duration: 300,
+              duration: 200,
               useNativeDriver: true
             })
               .start()
@@ -35,18 +34,16 @@ export const NavBar = ({setShowMenu,scaleValue,showMenu,offsetValue,closeButtonO
             setShowMenu(!showMenu);
           }}>
 
-            {/* <Image source={showMenu ? require( './src/assets/close.png') : require( './src/assets/menu.png')} style={{
-              width: 20,
-              height: 20,
-              tintColor: 'black',
-              marginTop: 40,
-
-            }}></Image> */}
 
            <IconButton name="menu" />
           </TouchableOpacity>
         <Text style={styles.navbarText}>WORDLES</Text>
-        <IconButton  name="cog" />
+        
+        <Text style={
+          {fontWeight: 'bold',
+          fontSize: 15,
+          }
+        }>12:20:20</Text>
       </View>
   )
 }
@@ -61,12 +58,11 @@ const styles = StyleSheet.create({
       justifyContent: 'space-around',
       borderBottomWidth:2,
       borderBottomColor: '#d8d6d6',
-      marginBottom:'8%',
       marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
     },
   
     navbarText: {
-      
+      marginLeft: Dimensions.get('window').width / 15,
       fontSize: 20,
       fontWeight: 'bold',
     },

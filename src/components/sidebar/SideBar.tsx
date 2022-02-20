@@ -9,41 +9,41 @@ import images from "../../assets"
 export const SideBar = ({currentTab,setCurrentTab}:Props) => {
   return (
     <View style={{ justifyContent: 'flex-start', padding: 15 }}>
-        <Image source={images.profile} style={{
+        {/* <Image source={images.profile} style={{
           width: 60,
           height: 60,
           borderRadius: 2,
           marginTop: 8
-        }}></Image>
+        }}></Image> */}
 
         <Text style={{
           fontSize: 20,
           fontWeight: 'bold',
           color: 'white',
           marginTop: 20
-        }}>Jenna Ezarik</Text>
+        }}>User Name</Text>
 
-        <TouchableOpacity>
+       {/*  <TouchableOpacity>
           <Text style={{
             marginTop: 6,
             color: 'white'
           }}>View Profile</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <View style={{ flexGrow: 1, marginTop: 50 }} >
           {
             // Tab Bar Buttons....
           }
 
-          <TabButton currentTab={currentTab} title="Home" src={images.home}  setCurrentTab={setCurrentTab}/>
-          <TabButton currentTab={currentTab} title="Resultado del día" src={images.search} setCurrentTab={setCurrentTab}/>
-          <TabButton currentTab={currentTab} title="Mi Colección" src={images.notification} setCurrentTab={setCurrentTab}/>
-          <TabButton currentTab={currentTab} title="Settings" src={images.settings} setCurrentTab={setCurrentTab}/>
+          <TabButton currentTab={currentTab} title="WORDLE" name="game-controller"  setCurrentTab={setCurrentTab}/>
+          <TabButton currentTab={currentTab} title="Resultado del día" name="bar-chart" setCurrentTab={setCurrentTab}/>
+          <TabButton currentTab={currentTab} title="Mi Colección" name="archive" setCurrentTab={setCurrentTab}/>
+         {/*  <TabButton currentTab={currentTab} title="Settings" name="cog" setCurrentTab={setCurrentTab}/> */}
 
         </View>
 
         <View>
-        <TabButton currentTab={currentTab} title="LogOut" src={images.logout} setCurrentTab={setCurrentTab}/>
+        <TabButton currentTab={currentTab} title="LogOut" name="log-out-outline" setCurrentTab={setCurrentTab}/>
          </View>
 
       </View>

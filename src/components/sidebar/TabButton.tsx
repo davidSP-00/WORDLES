@@ -1,13 +1,14 @@
 import React from 'react'
 import { Image, ImageSourcePropType, Text, TouchableOpacity, View } from 'react-native'
+import { IconButton } from '../IconButton'
 
 export interface Props{
     currentTab:string;
     title:string;
-    src:ImageSourcePropType;
+    name:String;
     setCurrentTab: React.Dispatch<React.SetStateAction<string>>;
 }
-export const TabButton = ({currentTab, setCurrentTab, title, src}:Props) => {
+export const TabButton = ({currentTab, setCurrentTab, title, name}:Props) => {
   return (
     <TouchableOpacity onPress={() => {
         if (title == "LogOut") {
@@ -23,14 +24,12 @@ export const TabButton = ({currentTab, setCurrentTab, title, src}:Props) => {
           backgroundColor: currentTab == title ? 'white' : 'transparent',
           paddingLeft: 13,
           paddingRight: 35,
-          borderRadius: 8,
+          borderRadius: 2,
           marginTop: 15
         }}>
+  <IconButton  name={name} size={25} color={currentTab == title ? "black" : "white"}/>
   
-          <Image source={src} style={{
-            width: 25, height: 25,
-            tintColor: currentTab == title ? "black" : "white"
-          }}></Image>
+        
   
           <Text style={{
             fontSize: 15,

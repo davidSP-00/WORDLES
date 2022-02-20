@@ -8,8 +8,8 @@ export const Score5Letter = ({word='DAVID'}:{word?:string}) => {
         flexDirection: 'row',
         marginVertical:5,
     }}>
-        { Array.from(Array(5).keys()).map(()=>(
-            <ScoreLetter ></ScoreLetter>
+        { Array.from(Array(5).keys()).map((index)=>(
+            <ScoreLetter key={index} ></ScoreLetter>
         ))}
         
         </View>

@@ -1,6 +1,5 @@
 import React, {  useState } from 'react'
 import { View } from 'react-native'
-import { WordContext } from '../components/context/WordContext'
 import { DeleteButton } from '../components/keyboard/DeleteButton'
 import { EnterButton } from '../components/keyboard/EnterButton'
 import { LetterButton } from '../components/keyboard/LetterButton'
@@ -27,10 +26,8 @@ export const Screen5Letters = () => {
     ({keyboardLine1,keyboardLine2,keyboardLine3});
 
    
-    const [wordWin, setWordWin] = useState("DAVID")
     return (
 
-        <WordContext.Provider value={{wordWin,setWordWin}}>
         <>
        
             <Word5Letter word={words.word1} words={words} setActualNumber={setActualNumber} setKeyboardLines={setKeyboardLines}/>
@@ -66,6 +63,5 @@ export const Screen5Letters = () => {
             <DeleteButton actualNumber={actualNumber} setWord={setWords}></DeleteButton>
             </View>
         </>
-</WordContext.Provider>
     )
 }

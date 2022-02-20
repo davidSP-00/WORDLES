@@ -1,6 +1,6 @@
 
-import { useContext, useState } from 'react';
-import { Dimensions, Pressable, StatusBar, Text } from 'react-native';
+import { useContext, } from 'react';
+import {  Pressable, Text } from 'react-native';
 import { showMessage } from 'react-native-flash-message';
 import { Words5 } from '../../data/5Words';
 import { WordContext } from '../context/WordContext';
@@ -37,6 +37,7 @@ export const EnterButton = ({ actualNumber, setWord }: Props) => {
                 }
                    
              }else{
+                
                 showMessage({
                     ...messageOptions,
                     message: "La palabra debe tener 5 letras",
