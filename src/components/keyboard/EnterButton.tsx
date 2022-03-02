@@ -19,7 +19,7 @@ export const EnterButton = ({ actualNumber, setWord }: Props) => {
 
         setWord((prev: any) => {
             const actualword=prev['word' + actualNumber];
-            if (actualword.length == 5) {
+            if (actualword?.length == 5) {
                 
                 
                 if(Words5.includes(actualword)||
