@@ -10,9 +10,6 @@ import { SideBar } from './src/components/sidebar/SideBar';
 import { TodayScore } from './src/pages/TodayScore';
 import { Collection } from './src/pages/Collection';
 import { WordContext } from './src/components/context/WordContext';
-import { useEffect } from 'react';
-import { getWordDay } from './src/services/getWordDay';
-
 
 
 export default function App() {
@@ -25,13 +22,7 @@ export default function App() {
   const [wordWin, setWordWin] = useState("DAVID")
 
 
-  useEffect(()=>{
-    getWordDay().then(res=>{
-      setWordWin(res.word);
-      
-    })
-
-  })
+ 
   return (
     <SafeAreaView style={styles.container}>
       <FlashMessage position="top" />

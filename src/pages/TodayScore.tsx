@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Dimensions, Text, View } from 'react-native'
+import { WordContext } from '../components/context/WordContext';
 import { Score5Letter } from '../components/score/Score5Letter'
 
 export const TodayScore = () => {
+    const { wordWin } = useContext(WordContext);
     return (
         <View style={
             {
@@ -19,7 +21,7 @@ export const TodayScore = () => {
             <Score5Letter ></Score5Letter>
             <Score5Letter ></Score5Letter>
             
-            <Text>La palabra del día es : PAPER</Text>
+            <Text>La palabra del día es : {wordWin}</Text>
             <View style={{
                 width: '100%',
                 flexDirection: 'row',

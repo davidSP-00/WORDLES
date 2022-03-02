@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { Dispatch, SetStateAction, useContext } from 'react'
 import { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
@@ -23,6 +24,10 @@ export const Word5Letter = ({ word, words, setActualNumber, setKeyboardLines }: 
 
     if (word.indexOf('&') > -1) {
       setActualNumber((prev: any) => prev + 1);
+      //guardar el storare la palabra actual.
+      AsyncStorage.setItem('@words_played',JSON.stringify(words));
+
+
       setKeyboardLines((prev: {
         keyboardLine1: keyboardProps[];
         keyboardLine2: keyboardProps[];
