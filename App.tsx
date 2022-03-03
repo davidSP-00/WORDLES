@@ -19,9 +19,9 @@ export default function App() {
   const offsetValue = useRef(new Animated.Value(0)).current;
   const closeButtonOffset = useRef(new Animated.Value(0)).current;
 
-  const [wordWin, setWordWin] = useState("DAVID")
+  const [wordWin, setWordWin] = useState("$$$$$")
 
-
+ 
  
   return (
     <SafeAreaView style={styles.container}>
@@ -55,7 +55,7 @@ export default function App() {
           <View style={[currentTab=="WORDLE" ? {} : { display: 'none' },{marginTop:'8%'} ]}>
             <Screen5Letters></Screen5Letters>
             </View>
-            <View style={currentTab=='Resultado del día' ? {} : { display: 'none' } }>
+            <View style={currentTab=='Estadísticas' ? {} : { display: 'none' } }>
           <TodayScore></TodayScore>
            </View>
            

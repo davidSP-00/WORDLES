@@ -1,10 +1,9 @@
 import React, { useContext } from 'react'
 import { Dimensions, Text, View } from 'react-native'
 import { WordContext } from '../components/context/WordContext';
-import { Score5Letter } from '../components/score/Score5Letter'
 
 export const TodayScore = () => {
-    const { wordWin } = useContext(WordContext);
+    const { wordWin ,} = useContext(WordContext);
     return (
         <View style={
             {
@@ -15,18 +14,17 @@ export const TodayScore = () => {
                 marginBottom: Dimensions.get('window').height / 30,
                 fontSize: Dimensions.get('window').width / 15,
             }}>ESTADISTICAS</Text>
-            <Score5Letter ></Score5Letter>
-            <Score5Letter ></Score5Letter>
-            <Score5Letter ></Score5Letter>
-            <Score5Letter ></Score5Letter>
-            <Score5Letter ></Score5Letter>
+            {/* <Score5Letter word={words.word1}></Score5Letter>
+            <Score5Letter word={words.word2} ></Score5Letter>
+            <Score5Letter word={words.word3} ></Score5Letter>
+            <Score5Letter word={words.word4} ></Score5Letter>
+            <Score5Letter word={words.word5} ></Score5Letter> */}
             
             <Text>La palabra del día es : {wordWin}</Text>
             <View style={{
                 width: '100%',
                 flexDirection: 'row',
-                justifyContent: 'space-between',
-                paddingHorizontal: Dimensions.get('window').width / 8,
+                justifyContent: 'space-around',
                 alignItems: 'center',
                 paddingVertical: Dimensions.get('window').height / 10,
             }}>
@@ -37,10 +35,10 @@ export const TodayScore = () => {
 
                     <Text style={{
                         fontSize: Dimensions.get('window').width / 20,
-                    }}>Ganadas</Text>
+                    }}> % Ganadas</Text>
                     <Text style={{
                         fontSize: Dimensions.get('window').width / 18,
-                    }}>2</Text>
+                    }}>2 %</Text>
                 </View>
                 <View style={{
                     alignItems: 'center',
@@ -49,10 +47,10 @@ export const TodayScore = () => {
 
                     <Text style={{
                         fontSize: Dimensions.get('window').width / 20,
-                    }}>Perdidas</Text>
+                    }}>% Perdidas</Text>
                     <Text style={{
                         fontSize: Dimensions.get('window').width / 18,
-                    }}>2</Text>
+                    }}>2 %</Text>
                 </View>
                 <View style={{
                     alignItems: 'center',
@@ -70,18 +68,6 @@ export const TodayScore = () => {
             <View style={{
                 alignItems: 'center',
             }}>
-                <Text style={{
-                        fontSize: Dimensions.get('window').width / 18,
-                    }}>
-                    SIGUIENTE PALABRA:
-                </Text>
-                
-                <Text style={{
-                    fontWeight: 'bold',
-                        fontSize: Dimensions.get('window').width / 18,
-                    }}>
-                    00:30:39
-                </Text>
             </View>
 
 

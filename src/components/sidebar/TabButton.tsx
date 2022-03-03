@@ -15,6 +15,8 @@ export const TabButton = ({currentTab, setCurrentTab, title, name}:Props) => {
           // Do your Stuff...
         } else {
           setCurrentTab(title)
+          //If si no existe token, no se puede entrar a la pantalla de juego
+          alert('Por favor inicie sesion para desbloquear esta sección')
         }
       }}>
         <View style={{

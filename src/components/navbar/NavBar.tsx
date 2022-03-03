@@ -1,7 +1,7 @@
 import React from 'react'
 import { Animated, Dimensions, Platform, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { IconButton } from '../IconButton'
-
+import CountDown from 'react-native-countdown-component';
 export const NavBar = ({setShowMenu,showMenu,offsetValue,closeButtonOffset}:any) => {
   return (
     <View style={styles.navbar}>
@@ -38,12 +38,38 @@ export const NavBar = ({setShowMenu,showMenu,offsetValue,closeButtonOffset}:any)
            <IconButton name="menu" />
           </TouchableOpacity>
         <Text style={styles.navbarText}>WORDLES</Text>
-        
-        <Text style={
-          {fontWeight: 'bold',
-          fontSize: 15,
+        <View style={
+          {
+            
           }
-        }>12:20:20</Text>
+        }>
+          <CountDown
+        until={80*80}
+        digitStyle={{backgroundColor: '#FFF'}}
+        showSeparator={true}
+        timeLabelStyle={{display: 'none'}}
+        timeToShow={[ 'H', 'M', 'S']}
+        size={12}
+          />
+  {/*  <CountDown
+    
+        until={80*80}
+        digitStyle={{backgroundColor: '#FFF',
+        height:'min-content'}}
+        showSeparator={true}
+        timeLabels={{h:null, m:null, s: null}}
+        timeToShow={[ 'H', 'M', 'S']}
+        onFinish={() => alert('finished')}
+        onPress={() => alert('hello')}
+        size={12}
+      /> */}
+      <Text style={{
+        fontSize: 8,
+        textAlign: 'center',
+        fontWeight: 'bold',
+      }}>Siguiente palabra</Text>
+        </View>
+       
       </View>
   )
 }
@@ -62,7 +88,7 @@ const styles = StyleSheet.create({
     },
   
     navbarText: {
-      marginLeft: Dimensions.get('window').width / 15,
+      marginLeft: Dimensions.get('window').width / 6,
       fontSize: 20,
       fontWeight: 'bold',
     },

@@ -8,19 +8,20 @@ import { LetterButton } from '../components/keyboard/LetterButton'
 import { Word5Letter } from '../components/word/Word5Letter'
 import { keyboardLine1, keyboardLine2, keyboardLine3, keyboardProps } from '../data/keyboardLine1'
 import { getWordDay } from '../services/getWordDay'
-
 export interface Props5Letters {
     word1: string;
     word2: string;
     word3: string;
     word4: string;
     word5: string;
-}
+    word6: string;
+  }
+
 
 export const Screen5Letters = () => {
     const [actualNumber, setActualNumber] = useState(1)
 
-    const [words, setWords] = useState<Props5Letters>({ word1: '', word2: '', word3: '', word4: '', word5: '' });
+    const [words, setWords] = useState<Props5Letters>({ word1: '', word2: '', word3: '', word4: '', word5: '' ,word6:''});
 
     const [keyboardLines, setKeyboardLines] = useState<{
         keyboardLine1: keyboardProps[];
@@ -28,9 +29,10 @@ export const Screen5Letters = () => {
         keyboardLine3: keyboardProps[]
     }>
         ({ keyboardLine1, keyboardLine2, keyboardLine3 });
-    const { wordWin, setWordWin } = useContext(WordContext);
+    const { setWordWin} = useContext(WordContext);
     useEffect(() => {
         getWordDay().then(async res => {
+            setWordWin(res);
             const jsonValue = await AsyncStorage.getItem('@word_day')
             await AsyncStorage.setItem('@word_day', res).then(() => {
                 console.log("word saved");
@@ -38,13 +40,12 @@ export const Screen5Letters = () => {
             if (jsonValue == res) {
                 //obtener words played
                 const wordsPlayed = await AsyncStorage.getItem('@words_played');
-                setWords(JSON.parse(wordsPlayed ? wordsPlayed : "{ word1: '', word2: '', word3: '', word4: '', word5: '' }"));
+                setWords(JSON.parse(wordsPlayed ? wordsPlayed : "{ word1: '', word2: '', word3: '', word4: '', word5: '', word6: '' }"));
 
             } else {
                 //vaciar words_played
-                await AsyncStorage.setItem('@words_played', JSON.stringify({ word1: '', word2: '', word3: '', word4: '', word5: '' }));
+                await AsyncStorage.setItem('@words_played', JSON.stringify({ word1: '', word2: '', word3: '', word4: '', word5: '', word6: '' }));
             }
-            setWordWin(res);
             
             return res;
         }).catch((reason) => {
@@ -61,10 +62,11 @@ export const Screen5Letters = () => {
             <Word5Letter word={words.word3} words={words} setActualNumber={setActualNumber} setKeyboardLines={setKeyboardLines} />
             <Word5Letter word={words.word4} words={words} setActualNumber={setActualNumber} setKeyboardLines={setKeyboardLines} />
             <Word5Letter word={words.word5} words={words} setActualNumber={setActualNumber} setKeyboardLines={setKeyboardLines} />
+            <Word5Letter word={words.word6} words={words} setActualNumber={setActualNumber} setKeyboardLines={setKeyboardLines} />
 
             <View style={{
                 flexDirection: 'row',
-                marginTop: '10%'
+                marginTop: '5%'
             }}>
                 {
                     keyboardLines.keyboardLine1.map((key, index) => (

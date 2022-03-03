@@ -5,7 +5,6 @@ export interface Props{
     currentTab:string;
     setCurrentTab: React.Dispatch<React.SetStateAction<string>>;
 }
-import images from "../../assets"
 export const SideBar = ({currentTab,setCurrentTab}:Props) => {
   return (
     <View style={{ justifyContent: 'flex-start', padding: 15 }}>
@@ -36,7 +35,7 @@ export const SideBar = ({currentTab,setCurrentTab}:Props) => {
           }
 
           <TabButton currentTab={currentTab} title="WORDLE" name="game-controller"  setCurrentTab={setCurrentTab}/>
-          <TabButton currentTab={currentTab} title="Resultado del día" name="bar-chart" setCurrentTab={setCurrentTab}/>
+          <TabButton currentTab={currentTab} title="Estadísticas" name="bar-chart" setCurrentTab={setCurrentTab}/>
           <TabButton currentTab={currentTab} title="Mi Colección" name="archive" setCurrentTab={setCurrentTab}/>
          {/*  <TabButton currentTab={currentTab} title="Settings" name="cog" setCurrentTab={setCurrentTab}/> */}
 

@@ -1,10 +1,13 @@
-import { Dimensions, ScrollView, StyleSheet, Text, View } from "react-native"
+import { Dimensions, FlatList, ScrollView, SectionList, StyleSheet, Text, View } from "react-native"
 
 
 export const Collection = () => {
     return (
-        <ScrollView showsVerticalScrollIndicator={false}  >
-            <Text style={styles.title}>Palabras Atrapadas : 5</Text>
+        <View
+        style={{
+            height:Dimensions.get('window').height * 0.92,
+        }} >
+           {/*  <Text style={styles.title}>Palabras Atrapadas : 5</Text>
             <View style={
                styles.wordList}>
                 {Array.from(Array(19).keys()).map((index) => (
@@ -22,34 +25,53 @@ export const Collection = () => {
                 ))}
 
 
-            </View>
-
-        </ScrollView>
+            </View> */}
+   <SectionList
+        style={{backgroundColor:'#B4E0B0'}}
+        stickySectionHeadersEnabled={true}
+          sections={[
+            {title: 'Palabras Ganadas : 29', data: []},
+          ]}
+          renderItem={({item}) => <Text style={styles.item}>{item}</Text>}
+          renderSectionHeader={({section}) => <Text key={section.title} style={styles.sectionHeader}>{section.title}</Text>}
+        />
+        <SectionList
+        stickySectionHeadersEnabled={true}
+        style={{backgroundColor:'#DEE0B0'}}
+               sections={[
+                 {title: 'Palabras Perdidas : 10', data: []},
+               ]}
+               renderItem={({item}) => <Text style={styles.item}>{item}</Text>}
+               renderSectionHeader={({section}) => <Text key={section.title} style={styles.sectionHeader2}>{section.title}</Text>}
+             />
+        </View>
 
     )
 }
 const styles = StyleSheet.create({
-    title: {
-        color: 'black',
-        textAlign: 'center',
-        fontSize: Dimensions.get('window').width / 20,
+    sectionHeader: {
+        padding:5,
+      fontSize: 14,
+      color:'#129309',
+      fontWeight: 'bold',
+      backgroundColor: '#B4E0B0',
+      borderBottomWidth:1,
+      borderBottomColor:'#129309'
     },
-    wordList: {
-        flex: 1,
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        width: '100%',
-        paddingVertical: Dimensions.get('window').width / 18,
+    sectionHeader2: {
+        padding:5,
+      fontSize: 14,
+      width: Dimensions.get('window').width,
+      color:'#8B9309',
+      fontWeight: 'bold',
+      backgroundColor: '#DEE0B0',
+      borderBottomWidth:1,
+      borderBottomColor:'#8B9309'
     },
-    wordCatched:{
-        color: 'green',
-        fontSize: Dimensions.get('window').width / 18,
-        marginHorizontal: Dimensions.get('window').width / 30,
+    item: {
+      padding: 7,
+      fontSize: 18,
+      height: 44,
     },
-    wordMissed:{
-        color: '#FFA420',
-        fontSize: Dimensions.get('window').width / 18,
-        marginHorizontal: Dimensions.get('window').width / 30,
-    }
 
 });

@@ -6,5 +6,5 @@ interface Props{
 }
 export const WordContext=createContext<Props>({
     setWordWin:()=>{},
-    wordWin:''
+    wordWin:'',
 });

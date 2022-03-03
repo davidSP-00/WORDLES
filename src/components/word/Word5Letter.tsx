@@ -21,7 +21,7 @@ export const Word5Letter = ({ word, words, setActualNumber, setKeyboardLines }: 
   const { wordWin } = useContext(WordContext);
 
   useEffect(() => {
-
+console.log(word,wordWin)
     if (word.indexOf('&') > -1) {
       setActualNumber((prev: any) => prev + 1);
       //guardar el storare la palabra actual.

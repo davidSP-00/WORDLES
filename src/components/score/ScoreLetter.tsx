@@ -1,12 +1,29 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
+import { useEffect } from 'react';
 import { Dimensions, StyleSheet, Text } from 'react-native'
+import { WordContext } from '../context/WordContext';
+interface IProps {
+  letter: string;
+  position:number;
+  word:string;
+}
+interface StyleProps{
+  letterStyle:"normalLetter"|"warningLetter"|"correctLetter"
+}
+export const ScoreLetter = ({letter,position,word}:IProps) => {
+  const [style, setStyle] = useState<StyleProps>({
+    letterStyle:"normalLetter"
+  });
+  useEffect(() => {
 
-export const ScoreLetter = () => {
+  
+  }, [word])
+  
   return (
-    <Text style={[style.letterStyle]}></Text>
+    <Text style={[styles.letterStyle,styles[style.letterStyle]]}></Text>
   )
 }
-const style=StyleSheet.create({
+const styles=StyleSheet.create<any>({
   letterStyle:{
     borderColor: 'black',
     borderWidth: 1,
@@ -14,10 +31,13 @@ const style=StyleSheet.create({
     height: Dimensions.get('window').width / 10,
     marginHorizontal:5,
 },
-letterWarning:{
+normalLetter:{
+
+},
+warningLetter:{
   backgroundColor:'#F8F32B'
 },
-letterCorrect:{
+correctLetter:{
   backgroundColor:'#57A639'
 }
 })

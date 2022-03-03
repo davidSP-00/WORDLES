@@ -1,4 +1,3 @@
-import { button } from '../components/keyboard/keyboard.style';
 export interface keyboardProps{
     letter:string;
     style:"letterNormal" | "letterPlayed" | "letterCorrect" | "letterWarning";
