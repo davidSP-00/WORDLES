@@ -10,7 +10,14 @@ import { SideBar } from './src/components/sidebar/SideBar';
 import { TodayScore } from './src/pages/TodayScore';
 import { Collection } from './src/pages/Collection';
 import { WordContext } from './src/components/context/WordContext';
+import { Register } from './src/pages/Register';
+import { Login } from './src/pages/Login';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useEffect } from 'react';
 
+interface Tabs{
+  currentTab:'WORDLE'|'Estadísticas'|'Mi Colección'|'Registro'|'Iniciar Sesion';
+}
 
 export default function App() {
   
@@ -19,13 +26,32 @@ export default function App() {
   const offsetValue = useRef(new Animated.Value(0)).current;
   const closeButtonOffset = useRef(new Animated.Value(0)).current;
 
+  const [auth, setAuth] = useState(false);
+  const [token, setToken] = useState("");
   const [wordWin, setWordWin] = useState("$$$$$")
 
+ useEffect(() => {
+  AsyncStorage.getItem('@token').then(async (token) => {
+            
+    if(token){
+      console.log(token)
+      setToken(token);
+        setAuth(true);
+    }else{
+      console.log(token)
+    }
+
+ });
+  
+ }, [])
  
+
  
   return (
     <SafeAreaView style={styles.container}>
       <FlashMessage position="top" />
+      
+      <WordContext.Provider value={{wordWin,setWordWin,auth,setAuth,token,setToken,currentTab,setCurrentTab}}>
       <SideBar currentTab={currentTab} setCurrentTab={setCurrentTab}></SideBar>
       <Animated.View style={{
         flexGrow: 1,
@@ -51,7 +77,6 @@ export default function App() {
           <NavBar setShowMenu={setShowMenu}  showMenu={showMenu}
             offsetValue={offsetValue} closeButtonOffset={closeButtonOffset}></NavBar>
             
-        <WordContext.Provider value={{wordWin,setWordWin}}>
           <View style={[currentTab=="WORDLE" ? {} : { display: 'none' },{marginTop:'8%'} ]}>
             <Screen5Letters></Screen5Letters>
             </View>
@@ -62,11 +87,18 @@ export default function App() {
            <View style={currentTab=='Mi Colección' ? {} : { display: 'none' } }>
           <Collection></Collection>
            </View>
-           </WordContext.Provider>
+           <View style={currentTab=='Registro' ? {} : { display: 'none' } }>
+          <Register></Register>
+           </View>
+           
+           <View style={currentTab=='Iniciar Sesion' ? {} : { display: 'none' } }>
+          <Login></Login>
+          </View>
         </Animated.View>
 
       </Animated.View>
 
+      </WordContext.Provider>
     </SafeAreaView>
   );
 }

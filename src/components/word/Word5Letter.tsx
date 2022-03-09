@@ -18,7 +18,7 @@ interface IProps {
 export const Word5Letter = ({ word, words, setActualNumber, setKeyboardLines }: IProps) => {
 
 
-  const { wordWin } = useContext(WordContext);
+  const { wordWin,auth } = useContext(WordContext);
 
   useEffect(() => {
 console.log(word,wordWin)

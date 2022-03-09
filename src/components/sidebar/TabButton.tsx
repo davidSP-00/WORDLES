@@ -1,5 +1,7 @@
-import React from 'react'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import React, { useContext } from 'react'
 import { Image, ImageSourcePropType, Text, TouchableOpacity, View } from 'react-native'
+import { WordContext } from '../context/WordContext'
 import { IconButton } from '../IconButton'
 
 export interface Props{
@@ -9,9 +11,13 @@ export interface Props{
     setCurrentTab: React.Dispatch<React.SetStateAction<string>>;
 }
 export const TabButton = ({currentTab, setCurrentTab, title, name}:Props) => {
+  const {setAuth} = useContext(WordContext)
   return (
-    <TouchableOpacity onPress={() => {
-        if (title == "LogOut") {
+    <TouchableOpacity onPress={async () => {
+        if (title == "Cerrar Sesion") {
+          console.log('cerrando sesoin')
+          await AsyncStorage.clear();
+          setAuth(false);
           // Do your Stuff...
         } else {
           setCurrentTab(title)

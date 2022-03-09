@@ -1,48 +1,51 @@
+import { useContext, useEffect } from "react";
 import { Dimensions, FlatList, ScrollView, SectionList, StyleSheet, Text, View } from "react-native"
+import { WordContext } from "../components/context/WordContext";
+import { getWordsPlayed } from "../services/getWordsPlayed";
+import jwt_decode from "jwt-decode";
+import { useState } from "react";
 
 
 export const Collection = () => {
+  const {currentTab,token} = useContext(WordContext);
+
+  const [wordsWin, setWordsWin] = useState([]);
+  const [wordsLose, setWordsLose] = useState([]);
+  
+  useEffect(() => {
+    if(currentTab== 'Mi Colección'){
+    
+    getWordsPlayed((jwt_decode(token) as any).sub,token).then(res=>{
+     
+      setWordsWin(res.filter((item:any)=>item.win==true))
+      setWordsLose(res.filter((item:any)=>item.win==false))
+    })
+   
+  }
+  }, [currentTab])
+  
     return (
         <View
         style={{
             height:Dimensions.get('window').height * 0.92,
         }} >
-           {/*  <Text style={styles.title}>Palabras Atrapadas : 5</Text>
-            <View style={
-               styles.wordList}>
-                {Array.from(Array(19).keys()).map((index) => (
-                    <Text key={index} style={styles.wordCatched}>PAPER</Text>
-                ))}
-
-
-            </View>
-            <Text  style={styles.title}>Palabras Perdidas : 5</Text>
-            <View style={
-               styles.wordList
-            }>
-                {Array.from(Array(90).keys()).map((index) => (
-                    <Text key={index} style={styles.wordMissed}>PAPER</Text>
-                ))}
-
-
-            </View> */}
    <SectionList
         style={{backgroundColor:'#B4E0B0'}}
         stickySectionHeadersEnabled={true}
           sections={[
-            {title: 'Palabras Ganadas : 29', data: []},
+            {title: 'Palabras Ganadas : 29', data: wordsWin,key:'win'},
           ]}
-          renderItem={({item}) => <Text style={styles.item}>{item}</Text>}
-          renderSectionHeader={({section}) => <Text key={section.title} style={styles.sectionHeader}>{section.title}</Text>}
+          renderItem={({item}:any) => <Text style={styles.item} key={item.word_id}>{item.word_id}</Text>}
+          renderSectionHeader={() => <Text  style={styles.sectionHeader}>Palabras Ganadas : 29</Text>}
         />
         <SectionList
         stickySectionHeadersEnabled={true}
         style={{backgroundColor:'#DEE0B0'}}
                sections={[
-                 {title: 'Palabras Perdidas : 10', data: []},
+                 {title: 'Palabras Perdidas : 10', data: wordsLose,key:'lose'},
                ]}
-               renderItem={({item}) => <Text style={styles.item}>{item}</Text>}
-               renderSectionHeader={({section}) => <Text key={section.title} style={styles.sectionHeader2}>{section.title}</Text>}
+               renderItem={({item}:any) => <Text style={styles.item}  key={item.word_id}>{item.word_id}</Text>}
+               renderSectionHeader={() => <Text  style={styles.sectionHeader2}>Palabras Perdidas : 10</Text>}
              />
         </View>
 
