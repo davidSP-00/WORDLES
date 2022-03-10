@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import React, { useContext } from 'react'
 import { Image, ImageSourcePropType, Text, TouchableOpacity, View } from 'react-native'
+import { tabs } from '../../data/tabs'
 import { WordContext } from '../context/WordContext'
 import { IconButton } from '../IconButton'
 
@@ -11,18 +12,31 @@ export interface Props{
     setCurrentTab: React.Dispatch<React.SetStateAction<string>>;
 }
 export const TabButton = ({currentTab, setCurrentTab, title, name}:Props) => {
-  const {setAuth} = useContext(WordContext)
+  const {setAuth,token} = useContext(WordContext)
   return (
     <TouchableOpacity onPress={async () => {
-        if (title == "Cerrar Sesion") {
+        if (title == tabs.CerrarSesion) {
           console.log('cerrando sesoin')
           await AsyncStorage.clear();
           setAuth(false);
           // Do your Stuff...
         } else {
-          setCurrentTab(title)
+
+            if(title==tabs.Estadísticas||title==tabs.MiColección){
+              if(token!=''){
+
+                setCurrentTab(title)
+              }else{
+
+                alert('Para acceder a esta sección debes iniciar sesión')
+              }
+              return;
+            }else{
+
+              setCurrentTab(title)
+            }
+        
           //If si no existe token, no se puede entrar a la pantalla de juego
-          alert('Por favor inicie sesion para desbloquear esta sección')
         }
       }}>
         <View style={{

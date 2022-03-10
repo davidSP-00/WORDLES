@@ -15,7 +15,7 @@ export const Login = () => {
             password: '',
         }
     });
-    const {setCurrentTab,setAuth} = useContext(WordContext)
+    const {setCurrentTab,setAuth,setToken} = useContext(WordContext)
 
     const [loading, setLoading] = useState(false);
     const onSubmit = (data: any) => {
@@ -29,7 +29,8 @@ export const Login = () => {
 
             });
             await AsyncStorage.setItem('@token', res.jwtToken).then(() => {
-                console.log("token saved");
+                console.log("token saved",res.jwtToken);
+                setToken(res.jwtToken);
                 setCurrentTab('WORDLE')
                 setAuth(true);
             })

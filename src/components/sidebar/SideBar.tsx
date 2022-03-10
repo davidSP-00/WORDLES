@@ -1,6 +1,7 @@
 import { useContext } from "react"
 import { Image, Text, TouchableOpacity } from "react-native"
 import { View } from "react-native-animatable"
+import { tabs } from "../../data/tabs"
 import { WordContext } from "../context/WordContext"
 import { TabButton } from "./TabButton"
 export interface Props{
@@ -37,17 +38,17 @@ export const SideBar = ({currentTab,setCurrentTab}:Props) => {
             // Tab Bar Buttons....
           }
 
-          <TabButton currentTab={currentTab} title="WORDLE" name="game-controller"  setCurrentTab={setCurrentTab}/>
-          <TabButton currentTab={currentTab} title="Estadísticas" name="bar-chart" setCurrentTab={setCurrentTab}/>
-          <TabButton currentTab={currentTab} title="Mi Colección" name="archive" setCurrentTab={setCurrentTab}/>
-         {!auth&& <TabButton currentTab={currentTab} title="Registro" name="enter-outline" setCurrentTab={setCurrentTab}/>}
-          {!auth&&<TabButton currentTab={currentTab} title="Iniciar Sesion" name="log-in" setCurrentTab={setCurrentTab}/>}
+          <TabButton currentTab={currentTab} title={tabs.WORDLE} name="game-controller"  setCurrentTab={setCurrentTab}/>
+          <TabButton currentTab={currentTab} title={tabs.Estadísticas} name="bar-chart" setCurrentTab={setCurrentTab}/>
+          <TabButton currentTab={currentTab} title={tabs.MiColección} name="archive" setCurrentTab={setCurrentTab}/>
+         {!auth&& <TabButton currentTab={currentTab} title={tabs.Registro} name="enter-outline" setCurrentTab={setCurrentTab}/>}
+          {!auth&&<TabButton currentTab={currentTab} title={tabs.IniciarSesion} name="log-in" setCurrentTab={setCurrentTab}/>}
          {/*  <TabButton currentTab={currentTab} title="Settings" name="cog" setCurrentTab={setCurrentTab}/> */}
 
         </View>
 
         <View>
-        {auth&&<TabButton currentTab={currentTab} title="Cerrar Sesion" name="log-out-outline" setCurrentTab={setCurrentTab}/>}
+        {auth&&<TabButton currentTab={currentTab} title={tabs.CerrarSesion} name="log-out-outline" setCurrentTab={setCurrentTab}/>}
          </View>
 
       </View>

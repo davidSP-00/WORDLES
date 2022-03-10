@@ -1,9 +1,10 @@
 import { useContext, useEffect } from "react";
-import { Dimensions, FlatList, ScrollView, SectionList, StyleSheet, Text, View } from "react-native"
+import { Dimensions, SectionList, StyleSheet, Text, View } from "react-native"
 import { WordContext } from "../components/context/WordContext";
 import { getWordsPlayed } from "../services/getWordsPlayed";
 import jwt_decode from "jwt-decode";
 import { useState } from "react";
+import { tabs } from "../data/tabs";
 
 
 export const Collection = () => {
@@ -13,7 +14,7 @@ export const Collection = () => {
   const [wordsLose, setWordsLose] = useState([]);
   
   useEffect(() => {
-    if(currentTab== 'Mi Colección'){
+    if(currentTab== tabs.MiColección){
     
     getWordsPlayed((jwt_decode(token) as any).sub,token).then(res=>{
      

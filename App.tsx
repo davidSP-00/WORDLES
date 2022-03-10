@@ -14,6 +14,7 @@ import { Register } from './src/pages/Register';
 import { Login } from './src/pages/Login';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect } from 'react';
+import { tabs } from './src/data/tabs';
 
 interface Tabs{
   currentTab:'WORDLE'|'Estadísticas'|'Mi Colección'|'Registro'|'Iniciar Sesion';
@@ -77,21 +78,21 @@ export default function App() {
           <NavBar setShowMenu={setShowMenu}  showMenu={showMenu}
             offsetValue={offsetValue} closeButtonOffset={closeButtonOffset}></NavBar>
             
-          <View style={[currentTab=="WORDLE" ? {} : { display: 'none' },{marginTop:'8%'} ]}>
+          <View style={[currentTab==tabs.WORDLE ? {} : { display: 'none' },{marginTop:'8%'} ]}>
             <Screen5Letters></Screen5Letters>
             </View>
-            <View style={currentTab=='Estadísticas' ? {} : { display: 'none' } }>
+            <View style={currentTab==tabs.Estadísticas ? {} : { display: 'none' } }>
           <TodayScore></TodayScore>
            </View>
            
-           <View style={currentTab=='Mi Colección' ? {} : { display: 'none' } }>
+           <View style={currentTab==tabs.MiColección? {} : { display: 'none' } }>
           <Collection></Collection>
            </View>
-           <View style={currentTab=='Registro' ? {} : { display: 'none' } }>
+           <View style={currentTab==tabs.Registro ? {} : { display: 'none' } }>
           <Register></Register>
            </View>
            
-           <View style={currentTab=='Iniciar Sesion' ? {} : { display: 'none' } }>
+           <View style={currentTab==tabs.IniciarSesion ? {} : { display: 'none' } }>
           <Login></Login>
           </View>
         </Animated.View>

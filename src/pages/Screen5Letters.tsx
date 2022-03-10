@@ -63,7 +63,7 @@ export const Screen5Letters = () => {
 
             })
         }
-    }, [auth, token])
+    }, [auth])
     return (
 
         <>
