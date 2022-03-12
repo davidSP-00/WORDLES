@@ -2,13 +2,15 @@
 import { Text, View, TextInput, Button, Alert, StyleSheet, Dimensions, ActivityIndicator } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import { authStyles } from "./Login";
-import { useState } from "react";
-import { register } from "../services/auth";
+import { useContext, useState } from "react";
+import { login, register } from "../services/auth";
 import { showMessage } from "react-native-flash-message";
 import { messageOptions } from "../components/modals/message.style";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { WordContext } from "../components/context/WordContext";
 
 export const Register = () => {
-    const { control, handleSubmit, formState: { errors } } = useForm({
+    const { control, handleSubmit, formState: { errors },reset } = useForm({
         defaultValues: {
             name: '',
             email: '',
@@ -18,6 +20,7 @@ export const Register = () => {
     });
 
     const [loading, setLoading] = useState(false);
+    const {setCurrentTab,setAuth,setToken} = useContext(WordContext)
     const onSubmit = (data: any) => {
         setLoading(true);
         let user = { email: data.email, password: data.password, name: data.name }
@@ -30,6 +33,31 @@ export const Register = () => {
                     message: "Registro correcto.",
 
                 });
+                ///
+//login
+
+login(user).then(async (res) => {
+    console.log('fds')
+    showMessage({
+        ...messageOptions,
+        message: "Inicio Exitoso.",
+
+    });
+    await AsyncStorage.setItem('@token', res.jwtToken).then(() => {
+        console.log("token saved",res.jwtToken);
+        setToken(res.jwtToken);
+        setCurrentTab('WORDLE')
+        setAuth(true);
+    })
+    reset();
+}).catch(err => {
+    showMessage({
+        ...messageOptions,
+        message: "Ocurrio un error por favor intentelo de nuevo en un momento.",
+
+    });
+})
+                //
             }
         ).catch((err) => {
             console.log(err)

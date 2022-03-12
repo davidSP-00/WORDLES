@@ -31,9 +31,12 @@ export const EnterButton = ({ actualNumber, setWord }: Props) => {
                         if(win || win=='false'){
                             AsyncStorage.setItem('@win','true');
                             //Guardar ganada en base de datos
-                            saveWordPlayed((jwt_decode(token) as any).sub,token).then(res=>{
-                                
-                            })
+                            console.log("gruardando",token)
+                            if(token!=''){
+                                saveWordPlayed((jwt_decode(token) as any).sub,token).then(res=>{
+                                    
+                                })
+                            }
                         }
                         });
                         

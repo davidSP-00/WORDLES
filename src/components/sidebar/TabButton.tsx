@@ -1,10 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import React, { useContext } from 'react'
-import { Image, ImageSourcePropType, Text, TouchableOpacity, View } from 'react-native'
+import { Alert, Image, ImageSourcePropType, Text, TouchableOpacity, View } from 'react-native'
 import { tabs } from '../../data/tabs'
 import { WordContext } from '../context/WordContext'
 import { IconButton } from '../IconButton'
-
 export interface Props{
     currentTab:string;
     title:string;
@@ -12,13 +11,15 @@ export interface Props{
     setCurrentTab: React.Dispatch<React.SetStateAction<string>>;
 }
 export const TabButton = ({currentTab, setCurrentTab, title, name}:Props) => {
-  const {setAuth,token} = useContext(WordContext)
+  const {setAuth,token,setToken} = useContext(WordContext)
   return (
     <TouchableOpacity onPress={async () => {
         if (title == tabs.CerrarSesion) {
-          console.log('cerrando sesoin')
+
           await AsyncStorage.clear();
+
           setAuth(false);
+          setToken('');
           // Do your Stuff...
         } else {
 

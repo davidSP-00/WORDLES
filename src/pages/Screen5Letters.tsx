@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import React, { useContext, useEffect, useState, version } from 'react'
-import { View } from 'react-native'
+import { ActivityIndicator, Alert, View } from 'react-native'
 import { WordContext } from '../components/context/WordContext'
 import { DeleteButton } from '../components/keyboard/DeleteButton'
 import { EnterButton } from '../components/keyboard/EnterButton'
@@ -32,6 +32,8 @@ export const Screen5Letters = () => {
         ({ keyboardLine1, keyboardLine2, keyboardLine3 });
     const { setWordWin, setAuth, auth, token } = useContext(WordContext);
 
+    const [loader, setLoader] = useState(false);
+
     useEffect(() => {
         console.log('scren')
         AsyncStorage.getItem('@word_day').then(wordDay => {
@@ -39,70 +41,83 @@ export const Screen5Letters = () => {
                 setWordWin(wordDay);
             }
         })
-        if (token != '') {
-            console.log('5wordtoken',token)
-            getWordDay((jwt_decode(token) as any).sub).then(async res => {
-                setWordWin(res);
-                const jsonValue = await AsyncStorage.getItem('@word_day')
-                await AsyncStorage.setItem('@word_day', res).then(() => {
-                    console.log("word saved");
-                })
-                if (jsonValue == res) {
-                    //obtener words played
-                    const wordsPlayed = await AsyncStorage.getItem('@words_played');
-                    setWords(JSON.parse(wordsPlayed ? wordsPlayed : "{ word1: '', word2: '', word3: '', word4: '', word5: '', word6: '' }"));
-
-                } else {
-                    //vaciar words_played
-                    await AsyncStorage.setItem('@win','false');
-                    await AsyncStorage.setItem('@words_played', JSON.stringify({ word1: '', word2: '', word3: '', word4: '', word5: '', word6: '' }));
-                }
-
-                return res;
-            }).catch(async (reason) => {
-
-            })
+        console.log('5wordtoken', token)
+        let user = "noUser";
+        if (token !='') {
+            user=(jwt_decode(token) as any).sub
         }
+        console.log("DS",user);
+        getWordDay(user).then(async res => {
+            setWordWin(res);
+            const jsonValue = await AsyncStorage.getItem('@word_day')
+            await AsyncStorage.setItem('@word_day', res).then(() => {
+                console.log("word saved");
+            })
+            if (jsonValue == res) {
+                //obtener words played
+                const wordsPlayed = await AsyncStorage.getItem('@words_played');
+                setWords(JSON.parse(wordsPlayed ? wordsPlayed : "{ word1: '', word2: '', word3: '', word4: '', word5: '', word6: '' }"));
+
+            } else {
+                //vaciar words_played
+                await AsyncStorage.setItem('@win', 'false');
+                await AsyncStorage.setItem('@words_played', JSON.stringify({ word1: '', word2: '', word3: '', word4: '', word5: '', word6: '' }));
+            }
+            setLoader(true);
+            return res;
+        }).catch(async (reason) => {
+            Alert.alert('Oppps!', 'Ha ocurrido un error, es posible que no tengas conexión a internet', [
+                {
+                  text: 'Cancel',
+                  onPress: () => console.log('Cancel Pressed'),
+                  style: 'cancel',
+                }
+              ]);
+        })
+
     }, [auth])
     return (
 
         <>
+            {loader ? <View>
+                <Word5Letter word={words.word1} words={words} setActualNumber={setActualNumber} setKeyboardLines={setKeyboardLines} />
+                <Word5Letter word={words.word2} words={words} setActualNumber={setActualNumber} setKeyboardLines={setKeyboardLines} />
+                <Word5Letter word={words.word3} words={words} setActualNumber={setActualNumber} setKeyboardLines={setKeyboardLines} />
+                <Word5Letter word={words.word4} words={words} setActualNumber={setActualNumber} setKeyboardLines={setKeyboardLines} />
+                <Word5Letter word={words.word5} words={words} setActualNumber={setActualNumber} setKeyboardLines={setKeyboardLines} />
+                <Word5Letter word={words.word6} words={words} setActualNumber={setActualNumber} setKeyboardLines={setKeyboardLines} />
 
-            <Word5Letter word={words.word1} words={words} setActualNumber={setActualNumber} setKeyboardLines={setKeyboardLines} />
-            <Word5Letter word={words.word2} words={words} setActualNumber={setActualNumber} setKeyboardLines={setKeyboardLines} />
-            <Word5Letter word={words.word3} words={words} setActualNumber={setActualNumber} setKeyboardLines={setKeyboardLines} />
-            <Word5Letter word={words.word4} words={words} setActualNumber={setActualNumber} setKeyboardLines={setKeyboardLines} />
-            <Word5Letter word={words.word5} words={words} setActualNumber={setActualNumber} setKeyboardLines={setKeyboardLines} />
-            <Word5Letter word={words.word6} words={words} setActualNumber={setActualNumber} setKeyboardLines={setKeyboardLines} />
+                <View style={{
+                    flexDirection: 'row',
+                    marginTop: '5%'
+                }}>
+                    {
+                        keyboardLines.keyboardLine1.map((key, index) => (
+                            <LetterButton key={key.letter} title={key.letter} style={key.style} words={words} setWord={setWords} actualNumber={actualNumber} />
+                        ))
+                    }
 
-            <View style={{
-                flexDirection: 'row',
-                marginTop: '5%'
-            }}>
-                {
-                    keyboardLines.keyboardLine1.map((key, index) => (
-                        <LetterButton key={key.letter} title={key.letter} style={key.style} words={words} setWord={setWords} actualNumber={actualNumber} />
-                    ))
-                }
+                </View>
+                <View style={{ flexDirection: 'row', }}>
+                    {
+                        keyboardLines.keyboardLine2.map((key, index) => (
+                            <LetterButton key={key.letter} title={key.letter} style={key.style} words={words} setWord={setWords} actualNumber={actualNumber} />
+                        ))
+                    }
+                </View>
 
-            </View>
-            <View style={{ flexDirection: 'row', }}>
-                {
-                    keyboardLines.keyboardLine2.map((key, index) => (
-                        <LetterButton key={key.letter} title={key.letter} style={key.style} words={words} setWord={setWords} actualNumber={actualNumber} />
-                    ))
-                }
-            </View>
+                <View style={{ flexDirection: 'row', }} >
+                    <EnterButton actualNumber={actualNumber} setWord={setWords}></EnterButton>
+                    {
+                        keyboardLines.keyboardLine3.map((key, index) => (
+                            <LetterButton key={key.letter} title={key.letter} style={key.style} words={words} setWord={setWords} actualNumber={actualNumber} />
+                        ))
+                    }
+                    <DeleteButton actualNumber={actualNumber} setWord={setWords}></DeleteButton>
+                </View>
 
-            <View style={{ flexDirection: 'row', }} >
-                <EnterButton actualNumber={actualNumber} setWord={setWords}></EnterButton>
-                {
-                    keyboardLines.keyboardLine3.map((key, index) => (
-                        <LetterButton key={key.letter} title={key.letter} style={key.style} words={words} setWord={setWords} actualNumber={actualNumber} />
-                    ))
-                }
-                <DeleteButton actualNumber={actualNumber} setWord={setWords}></DeleteButton>
-            </View>
+            </View> : <View> 
+    <ActivityIndicator size="large"  color="#999999"/></View>}
         </>
     )
 }

@@ -9,7 +9,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { WordContext } from "../components/context/WordContext";
 
 export const Login = () => {
-    const { control, handleSubmit, formState: { errors } } = useForm({
+    const { control, handleSubmit, formState: { errors },reset } = useForm({
         defaultValues: {
             email: '',
             password: '',
@@ -23,6 +23,7 @@ export const Login = () => {
         let user = { email: data.email, password: data.password, name: " " };
         console.log(user)
         login(user).then(async (res) => {
+            console.log('fds')
             showMessage({
                 ...messageOptions,
                 message: "Inicio Exitoso.",
@@ -34,6 +35,8 @@ export const Login = () => {
                 setCurrentTab('WORDLE')
                 setAuth(true);
             })
+            
+    reset();
         }).catch(err => {
             showMessage({
                 ...messageOptions,

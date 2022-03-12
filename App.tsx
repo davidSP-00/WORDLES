@@ -16,9 +16,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect } from 'react';
 import { tabs } from './src/data/tabs';
 
-interface Tabs{
-  currentTab:'WORDLE'|'Estadísticas'|'Mi Colección'|'Registro'|'Iniciar Sesion';
-}
 
 export default function App() {
   

@@ -1,15 +1,28 @@
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Image, Text, TouchableOpacity } from "react-native"
 import { View } from "react-native-animatable"
 import { tabs } from "../../data/tabs"
 import { WordContext } from "../context/WordContext"
 import { TabButton } from "./TabButton"
+import jwt_decode from "jwt-decode";
 export interface Props{
     currentTab:string;
     setCurrentTab: React.Dispatch<React.SetStateAction<string>>;
 }
 export const SideBar = ({currentTab,setCurrentTab}:Props) => {
-  const {auth} = useContext(WordContext);
+  const {auth,token} = useContext(WordContext);
+ 
+
+  const [name, setName] = useState("Inicie Sesión");
+  useEffect(() => {
+    if(token!=''){
+      setName((jwt_decode(token) as any).sub);
+        }else{
+
+        }    
+  }, [])
+  
+
   return (
     <View style={{ justifyContent: 'flex-start', padding: 15 }}>
         {/* <Image source={images.profile} style={{
@@ -20,11 +33,11 @@ export const SideBar = ({currentTab,setCurrentTab}:Props) => {
         }}></Image> */}
 
         <Text style={{
-          fontSize: 20,
+          fontSize: 13,
           fontWeight: 'bold',
           color: 'white',
           marginTop: 20
-        }}>User Name</Text>
+        }}>{name}</Text>
 
        {/*  <TouchableOpacity>
           <Text style={{

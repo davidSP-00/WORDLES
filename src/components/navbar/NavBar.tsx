@@ -3,13 +3,14 @@ import { Animated, Dimensions, Platform, StatusBar, StyleSheet, Text, TouchableO
 import { IconButton } from '../IconButton'
 import CountDown from 'react-native-countdown-component';
 import { getDate } from '../../services/getDate';
+import moment from 'moment';
 export const NavBar = ({setShowMenu,showMenu,offsetValue,closeButtonOffset}:any) => {
  
  const [time, setTime] = useState(0)
   useEffect(() => {
     getDate().then(t=>{
-      console.log(t)
-setTime(t);
+      console.log('fdsa')
+    setTime(moment(t).add(1,'day').set('hours',0).set('minutes',0).set('seconds',0).unix()-moment(t).unix());
     })
   
   }, [])
