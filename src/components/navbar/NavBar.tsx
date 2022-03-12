@@ -1,8 +1,19 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Animated, Dimensions, Platform, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { IconButton } from '../IconButton'
 import CountDown from 'react-native-countdown-component';
+import { getDate } from '../../services/getDate';
 export const NavBar = ({setShowMenu,showMenu,offsetValue,closeButtonOffset}:any) => {
+ 
+ const [time, setTime] = useState(0)
+  useEffect(() => {
+    getDate().then(t=>{
+      console.log(t)
+setTime(t);
+    })
+  
+  }, [])
+  
   return (
     <View style={styles.navbar}>
 <TouchableOpacity onPress={() => {
@@ -43,14 +54,17 @@ export const NavBar = ({setShowMenu,showMenu,offsetValue,closeButtonOffset}:any)
             
           }
         }>
+          {time!=0&&
           <CountDown
-        until={80*80}
-        digitStyle={{backgroundColor: '#FFF'}}
-        showSeparator={true}
-        timeLabelStyle={{display: 'none'}}
-        timeToShow={[ 'H', 'M', 'S']}
-        size={12}
-          />
+          until={time}
+          digitStyle={{backgroundColor: '#FFF'}}
+          showSeparator={true}
+          timeLabelStyle={{display: 'none'}}
+          timeToShow={[ 'H', 'M', 'S']}
+          size={12}
+            />
+          }
+          
   {/*  <CountDown
     
         until={80*80}
