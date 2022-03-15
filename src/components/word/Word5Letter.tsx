@@ -4,8 +4,9 @@ import { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { keyboardLine1, keyboardProps } from '../../data/keyboardLine1';
 import { Props5Letters } from '../../pages/Screen5Letters';
+import { saveWordPlayed } from '../../services/saveWordPlayed';
 import { WordContext } from '../context/WordContext';
-import { button } from '../keyboard/keyboard.style';
+import jwt_decode from "jwt-decode";
 import { LetterInput } from './LetterInput';
 interface IProps {
   word: string;
@@ -18,14 +19,21 @@ interface IProps {
 export const Word5Letter = ({ word, words, setActualNumber, setKeyboardLines }: IProps) => {
 
 
-  const { wordWin,auth } = useContext(WordContext);
+  const { wordWin,auth,token } = useContext(WordContext);
 
   useEffect(() => {
-console.log(word,wordWin)
+console.log("5LETTERINPUT",word,wordWin)
     if (word.indexOf('&') > -1) {
       setActualNumber((prev: any) => prev + 1);
       //guardar el storare la palabra actual.
       AsyncStorage.setItem('@words_played',JSON.stringify(words));
+      if(word.substring(0,5)==wordWin){
+        if(token!=''){
+          saveWordPlayed((jwt_decode(token) as any).sub,token).then(res=>{
+              
+          })
+      }
+      }
 
 
       setKeyboardLines((prev: {

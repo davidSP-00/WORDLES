@@ -60,12 +60,21 @@ login(user).then(async (res) => {
                 //
             }
         ).catch((err) => {
-            console.log(err)
-            showMessage({
-                ...messageOptions,
-                message: "Ocurrio un error por favor intentelo de nuevo en un momento.",
-
-            });
+            console.log(err.response.status)
+            if(err.response.status==401){
+                showMessage({
+                    ...messageOptions,
+                    message: "El correo ya esta en uso.",
+    
+                });
+            }else{
+                showMessage({
+                    ...messageOptions,
+                    message: "Ocurrio un error por favor intentelo de nuevo en un momento.",
+    
+                });
+            }
+           
         }).finally(() => {
 
             setLoading(false);

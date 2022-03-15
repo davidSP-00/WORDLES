@@ -15,6 +15,7 @@ import { Login } from './src/pages/Login';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect } from 'react';
 import { tabs } from './src/data/tabs';
+import { HowToPlay } from './src/pages/HowToPlay';
 
 
 export default function App() {
@@ -91,6 +92,9 @@ export default function App() {
            
            <View style={currentTab==tabs.IniciarSesion ? {} : { display: 'none' } }>
           <Login></Login>
+          </View>
+          <View style={currentTab==tabs.ComoJugar ? {} : { display: 'none' } }>
+          
           </View>
         </Animated.View>
 

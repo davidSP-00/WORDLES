@@ -40,7 +40,7 @@ export const Login = () => {
         }).catch(err => {
             showMessage({
                 ...messageOptions,
-                message: "Ocurrio un error por favor intentelo de nuevo en un momento.",
+                message: "Email o contraseña incorrectas.",
 
             });
         }).finally(() => {

@@ -7,8 +7,6 @@ import { Words5 } from '../../data/5Words';
 import { WordContext } from '../context/WordContext';
 import { messageOptions } from '../modals/message.style';
 import { button } from './keyboard.style';
-import jwt_decode from "jwt-decode";
-import { saveWordPlayed } from '../../services/saveWordPlayed';
 interface Props {
 
     actualNumber: number;
@@ -26,7 +24,7 @@ export const EnterButton = ({ actualNumber, setWord }: Props) => {
                 
                 if(Words5.includes(actualword)||
                 wordWin==actualword){
-                    if(wordWin==actualword){
+                  /*   if(wordWin==actualword){
                         AsyncStorage.getItem('@win').then(win=>{
                         if(win || win=='false'){
                             AsyncStorage.setItem('@win','true');
@@ -40,7 +38,7 @@ export const EnterButton = ({ actualNumber, setWord }: Props) => {
                         }
                         });
                         
-                    }
+                    } */
 
                     return { ...prev, ['word' + (actualNumber )]: actualword + '&' };
                 

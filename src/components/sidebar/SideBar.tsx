@@ -54,6 +54,7 @@ export const SideBar = ({currentTab,setCurrentTab}:Props) => {
           <TabButton currentTab={currentTab} title={tabs.WORDLE} name="game-controller"  setCurrentTab={setCurrentTab}/>
           <TabButton currentTab={currentTab} title={tabs.Estadísticas} name="bar-chart" setCurrentTab={setCurrentTab}/>
           <TabButton currentTab={currentTab} title={tabs.MiColección} name="archive" setCurrentTab={setCurrentTab}/>
+          <TabButton currentTab={currentTab} title={tabs.ComoJugar} name="ios-help-circle-outline" setCurrentTab={setCurrentTab}/>
          {!auth&& <TabButton currentTab={currentTab} title={tabs.Registro} name="enter-outline" setCurrentTab={setCurrentTab}/>}
           {!auth&&<TabButton currentTab={currentTab} title={tabs.IniciarSesion} name="log-in" setCurrentTab={setCurrentTab}/>}
          {/*  <TabButton currentTab={currentTab} title="Settings" name="cog" setCurrentTab={setCurrentTab}/> */}

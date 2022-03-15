@@ -1,7 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Alert, Image, ImageSourcePropType, Text, TouchableOpacity, View } from 'react-native'
 import { tabs } from '../../data/tabs'
+import { HowToPlay } from '../../pages/HowToPlay'
 import { WordContext } from '../context/WordContext'
 import { IconButton } from '../IconButton'
 export interface Props{
@@ -12,16 +13,36 @@ export interface Props{
 }
 export const TabButton = ({currentTab, setCurrentTab, title, name}:Props) => {
   const {setAuth,token,setToken} = useContext(WordContext)
+ 
+  const [modalVisible, setModalVisible] = useState(false);
   return (
     <TouchableOpacity onPress={async () => {
         if (title == tabs.CerrarSesion) {
 
-          await AsyncStorage.clear();
+          Alert.alert('Cerrando Sesión', 'Seguro que quieres cerrar sesión?', [
+            {
+              text: 'Cancelar',
+              onPress: () => {
+                
+              },
+              style: 'cancel',
+            },
+            { text: 'Si', onPress: async () => {
+              await AsyncStorage.clear();
+              setAuth(false);
+              setToken('');
+            }},
+          ]);
 
-          setAuth(false);
-          setToken('');
+        
           // Do your Stuff...
-        } else {
+        }else if(title == tabs.ComoJugar){
+
+          setModalVisible(!modalVisible);
+        }
+        
+        
+        else {
 
             if(title==tabs.Estadísticas||title==tabs.MiColección){
               if(token!=''){
@@ -40,6 +61,7 @@ export const TabButton = ({currentTab, setCurrentTab, title, name}:Props) => {
           //If si no existe token, no se puede entrar a la pantalla de juego
         }
       }}>
+       {modalVisible&& <HowToPlay modalVisible={modalVisible} setModalVisible={setModalVisible}></HowToPlay>}
         <View style={{
           flexDirection: "row",
           alignItems: 'center',
@@ -61,7 +83,8 @@ export const TabButton = ({currentTab, setCurrentTab, title, name}:Props) => {
             color: currentTab == title ? "black" : "white"
           }}>{title}</Text>
   
-        </View>
-      </TouchableOpacity>
+         </View>
+        
+     </TouchableOpacity>
   )
 }
