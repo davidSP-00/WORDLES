@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { Animated, Dimensions, Platform, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Animated, BackHandler, Dimensions, Platform, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { IconButton } from '../IconButton'
 import CountDown from 'react-native-countdown-component';
+import * as Updates from 'expo-updates';
 import { getDate } from '../../services/getDate';
 import moment from 'moment';
 export const NavBar = ({setShowMenu,showMenu,offsetValue,closeButtonOffset}:any) => {
@@ -9,8 +10,9 @@ export const NavBar = ({setShowMenu,showMenu,offsetValue,closeButtonOffset}:any)
  const [time, setTime] = useState(0)
   useEffect(() => {
     getDate().then(t=>{
-      console.log('fdsa')
-    setTime(moment(t).add(1,'day').set('hours',0).set('minutes',0).set('seconds',0).unix()-moment(t).unix());
+      console.log( moment(t).add(1,'day').set('hours',0).set('minutes',0).set('seconds',0).unix()-moment(t).unix())
+    setTime(moment(t).add(1,'day').set('hours',0).set('minutes',0).set('seconds',0).unix()-moment(t).unix()/* 10 */);
+    
     })
   
   }, [])
@@ -60,6 +62,9 @@ export const NavBar = ({setShowMenu,showMenu,offsetValue,closeButtonOffset}:any)
           until={time}
           digitStyle={{backgroundColor: '#FFF'}}
           showSeparator={true}
+          onFinish={() => {
+            Updates.reloadAsync();
+          }}
           timeLabelStyle={{display: 'none'}}
           timeToShow={[ 'H', 'M', 'S']}
           size={12}

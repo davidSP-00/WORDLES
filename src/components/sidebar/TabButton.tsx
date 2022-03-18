@@ -49,8 +49,20 @@ export const TabButton = ({currentTab, setCurrentTab, title, name}:Props) => {
 
                 setCurrentTab(title)
               }else{
-
-                alert('Para acceder a esta sección debes iniciar sesión')
+                Alert.alert('WORDLES', 'Para acceder a esta sección debes iniciar sesión', [
+                  {
+                    text: 'Cancelar',
+                    onPress: () => {
+                      
+                    },
+                    style: 'cancel',
+                  },
+                  { text: 'Si', onPress: async () => {
+                    await AsyncStorage.clear();
+                    setAuth(false);
+                    setToken('');
+                  }},
+                ]);
               }
               return;
             }else{

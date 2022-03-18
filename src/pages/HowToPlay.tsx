@@ -51,7 +51,7 @@ export const HowToPlay = ({modalVisible,setModalVisible}:{modalVisible:boolean,s
                         </Text>
 
                         <Text style={styles.modalText}>
-                            Si ocurre alguna incidencia o deseas enviarnos tus comentarios, contacta al correo eeuuxbox1@gmail.com.
+                            Si ocurre alguna incidencia o deseas enviarnos tus comentarios, contacta al correo wordles.info@gmail.com
                         </Text>
                         <Pressable
                             style={[styles.button, styles.buttonClose]}

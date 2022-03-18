@@ -30,7 +30,7 @@ export const LetterButton = ({ actualNumber, title, words,style, setWord }: Prop
 
   const setW = () => {
 
-    if(wordWin==words['word' + (actualNumber-1)]?.slice(0, -1)){
+    if(wordWin==words['word' + (actualNumber-1)]?.slice(0, -1)||actualNumber==7){
       showMessage({
         ...messageOptions,
         message: "Juego terminado",
