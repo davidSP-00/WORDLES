@@ -11,7 +11,12 @@ interface Props {
 export const DeleteButton = ({ actualNumber, setWord }: Props) => {
 
     const setW = () => {
+        if(actualNumber==7){
+            return;
+        }
         setWord((prev: any) => {
+            
+           
             return { ...prev, ['word' + actualNumber]: prev['word' + actualNumber].slice(0, -1) };
         })
     }

@@ -20,7 +20,7 @@ import { HowToPlay } from './src/pages/HowToPlay';
 
 export default function App() {
   
-  const [currentTab, setCurrentTab] = useState("WORDLE");
+  const [currentTab, setCurrentTab] = useState("WordDay");
   const [showMenu, setShowMenu] = useState(false);
   const offsetValue = useRef(new Animated.Value(0)).current;
   const closeButtonOffset = useRef(new Animated.Value(0)).current;
@@ -76,7 +76,7 @@ export default function App() {
           <NavBar setShowMenu={setShowMenu}  showMenu={showMenu}
             offsetValue={offsetValue} closeButtonOffset={closeButtonOffset}></NavBar>
             
-          <View style={[currentTab==tabs.WORDLE ? {} : { display: 'none' },{marginTop:'8%'} ]}>
+          <View style={[currentTab==tabs.WordDay ? {} : { display: 'none' },{marginTop:'8%'} ]}>
             <Screen5Letters></Screen5Letters>
             </View>
             <View style={currentTab==tabs.Estadísticas ? {} : { display: 'none' } }>

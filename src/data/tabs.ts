@@ -1,5 +1,5 @@
  export const tabs = {
-    WORDLE:"WORDLE",
+    WordDay:"WordDay",
     Estadísticas: "Estadísticas",
     MiColección: "Mi Colección",
     Registro: "Registro",

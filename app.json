@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Wordle",
-    "slug": "Wordle",
+    "name": "WordDays",
+    "slug": "WordDays",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -24,7 +24,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.wordles"
+      "package": "com.dsp.worddays",
+      "permissions": []
     },
     "web": {
       "favicon": "./assets/favicon.png"

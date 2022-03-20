@@ -32,7 +32,7 @@ export const Login = () => {
             await AsyncStorage.setItem('@token', res.jwtToken).then(() => {
                 console.log("token saved",res.jwtToken);
                 setToken(res.jwtToken);
-                setCurrentTab('WORDLE')
+                setCurrentTab('WordDay')
                 setAuth(true);
             })
             

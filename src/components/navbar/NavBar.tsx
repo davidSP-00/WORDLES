@@ -51,7 +51,7 @@ export const NavBar = ({setShowMenu,showMenu,offsetValue,closeButtonOffset}:any)
 
            <IconButton name="menu" />
           </TouchableOpacity>
-        <Text style={styles.navbarText}>WORDLES</Text>
+        <Text style={styles.navbarText}>WordDay</Text>
         <View style={
           {
             

@@ -49,7 +49,7 @@ export const TabButton = ({currentTab, setCurrentTab, title, name}:Props) => {
 
                 setCurrentTab(title)
               }else{
-                Alert.alert('WORDLES', 'Para acceder a esta sección debes iniciar sesión', [
+                Alert.alert('WordDay', 'Para acceder a esta sección debes iniciar sesión', [
                   {
                     text: 'Cancelar',
                     onPress: () => {
