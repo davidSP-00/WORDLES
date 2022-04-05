@@ -1,5 +1,5 @@
 
-import { Platform, SafeAreaView, StyleSheet, StatusBar, Animated, View} from 'react-native';
+import { Platform, SafeAreaView, StyleSheet, StatusBar, Animated, View, TouchableWithoutFeedback, Dimensions} from 'react-native';
 
 import { Screen5Letters } from './src/pages/Screen5Letters';
 import { NavBar } from './src/components/navbar/NavBar';
@@ -73,6 +73,30 @@ export default function App() {
           }],
           alignItems: 'center'
         }}>
+           <TouchableWithoutFeedback onPress={() => {
+            if(showMenu){
+             Animated.timing(offsetValue, {
+                // YOur Random Value...
+                toValue: showMenu ? 0 : 230,
+                duration: 200,
+                useNativeDriver: true
+              })
+                .start()
+              
+              Animated.timing(closeButtonOffset, {
+                // YOur Random Value...
+                toValue: !showMenu ? 0 : 0,
+                duration: 200,
+                useNativeDriver: true
+              })
+                .start()
+              
+              setShowMenu(!showMenu);
+            }
+
+}}
+        >
+          <View style={{width:Dimensions.get('window').width}}>
           <NavBar setShowMenu={setShowMenu}  showMenu={showMenu}
             offsetValue={offsetValue} closeButtonOffset={closeButtonOffset}></NavBar>
             
@@ -86,16 +110,15 @@ export default function App() {
            <View style={currentTab==tabs.MiColección? {} : { display: 'none' } }>
           <Collection></Collection>
            </View>
-           <View style={currentTab==tabs.Registro ? {} : { display: 'none' } }>
-          <Register></Register>
-           </View>
+           {currentTab==tabs.Registro&& <Register></Register>}
+           {currentTab==tabs.IniciarSesion&&<Login></Login>}
+          
            
-           <View style={currentTab==tabs.IniciarSesion ? {} : { display: 'none' } }>
-          <Login></Login>
-          </View>
           <View style={currentTab==tabs.ComoJugar ? {} : { display: 'none' } }>
           
           </View>
+          </View>
+          </TouchableWithoutFeedback>
         </Animated.View>
 
       </Animated.View>

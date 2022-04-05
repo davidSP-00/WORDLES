@@ -20,14 +20,6 @@ export const NavBar = ({setShowMenu,showMenu,offsetValue,closeButtonOffset}:any)
   return (
     <View style={styles.navbar}>
 <TouchableOpacity onPress={() => {
-            // Do Actions Here....
-            // Scaling the view...
-         /*    Animated.timing(scaleValue, {
-              toValue: showMenu ? 1 : 1,
-              duration: 300,
-              useNativeDriver: true
-            })
-              .start() */
 
             Animated.timing(offsetValue, {
               // YOur Random Value...

@@ -79,7 +79,7 @@ export const Screen5Letters = () => {
     return (
 
         <>
-            {loader ? <View>
+            {loader ? <View style={{alignItems:'center'}}>
                 <Word5Letter word={words.word1} words={words} setActualNumber={setActualNumber} setKeyboardLines={setKeyboardLines} />
                 <Word5Letter word={words.word2} words={words} setActualNumber={setActualNumber} setKeyboardLines={setKeyboardLines} />
                 <Word5Letter word={words.word3} words={words} setActualNumber={setActualNumber} setKeyboardLines={setKeyboardLines} />

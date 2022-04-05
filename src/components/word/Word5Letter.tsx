@@ -41,84 +41,67 @@ console.log("5LETTERINPUT",word,wordWin)
         keyboardLine2: keyboardProps[];
         keyboardLine3: keyboardProps[]
       }) => {
-        [...new Set(word.split(''))].forEach((letter: string) => {
-
-          prev.keyboardLine1.map((item: keyboardProps) => {
-            if (item.letter === letter) {
-              if (wordWin.includes(letter)) {
-                
-                if (item.style == 'letterCorrect') {
-                }else{
-                  item.style = "letterWarning";
-                }
-                [...wordWin].forEach(
-                  (c, index) => {
-                    if (c == word.charAt(index)) {
-                      item.style = "letterCorrect";
-                    }
-                  }
-                )
-
-              } else {
-                  
-                  item.style = "letterPlayed";
-                
-
-              }
+        prev.keyboardLine1.map((item: keyboardProps) => {
+          if (  wordWin.includes(item.letter)&&word.includes(item.letter)) {
+            if (item.style == 'letterCorrect') {
+            }else{
+              item.style = "letterWarning";
             }
-          })
-          prev.keyboardLine2.map((item: keyboardProps) => {
-            if (item.letter === letter) {
-              if (wordWin.includes(letter)) {
-                if (item.style == 'letterCorrect') {
-                }else{
-                  item.style = "letterWarning";
-                }
-                [...wordWin].forEach(
-                  (c, index) => {
-                    if (c == word.charAt(index)) {
-                      item.style = "letterCorrect";
-                    }
-                  }
-                )
-
-              } else {
-                if (item.style == 'letterCorrect') {
-                }else{
-                  
-                  item.style = "letterPlayed";
-                }
-
+            [...Array(5).keys()].forEach(i => {
+              if(wordWin.charAt(i)==word.charAt(i)&&wordWin.charAt(i)==item.letter){
+                item.style="letterCorrect"
               }
+
+            });
+            
+           
+          }else{
+            if(word.includes(item.letter)){
+            item.style="letterPlayed";
             }
-          })
-          prev.keyboardLine3.map((item: keyboardProps) => {
-            if (item.letter === letter) {
-              if (wordWin.includes(letter)) {
-                if (item.style == 'letterCorrect') {
-                }else{
-                  item.style = "letterWarning";
-                }
-                [...wordWin].forEach(
-                  (c, index) => {
-                    if (c == word.charAt(index)) {
-                      item.style = "letterCorrect";
-                    }
-                  }
-                )
-
-              } else {
-                if (item.style == 'letterCorrect') {
-                }else{
-                  
-                  item.style = "letterPlayed";
-                }
-
+          }
+          
+        })
+        prev.keyboardLine2.map((item: keyboardProps) => {
+          if (  wordWin.includes(item.letter)&&word.includes(item.letter)) {
+            if (item.style == 'letterCorrect') {
+            }else{
+              item.style = "letterWarning";
+            }
+            [...Array(5).keys()].forEach(i => {
+              if(wordWin.charAt(i)==word.charAt(i)&&wordWin.charAt(i)==item.letter){
+                item.style="letterCorrect"
               }
-            }
-          })
-        });
 
+            });
+            
+           
+          }else{
+            if(word.includes(item.letter)){
+            item.style="letterPlayed";
+            }
+          }
+        })
+        prev.keyboardLine3.map((item: keyboardProps) => {
+          if (  wordWin.includes(item.letter)&&word.includes(item.letter)) {
+            if (item.style == 'letterCorrect') {
+            }else{
+              item.style = "letterWarning";
+            }
+            [...Array(5).keys()].forEach(i => {
+              if(wordWin.charAt(i)==word.charAt(i)&&wordWin.charAt(i)==item.letter){
+                item.style="letterCorrect"
+              }
+
+            });
+            
+           
+          }else{
+            if(word.includes(item.letter)){
+            item.style="letterPlayed";
+            }
+          }
+        })
         return prev;
       }
       );

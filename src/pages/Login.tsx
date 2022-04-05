@@ -31,12 +31,13 @@ export const Login = () => {
             });
             await AsyncStorage.setItem('@token', res.jwtToken).then(() => {
                 console.log("token saved",res.jwtToken);
+                
+                setCurrentTab('WordDay');
                 setToken(res.jwtToken);
-                setCurrentTab('WordDay')
-                setAuth(true);
+              
             })
             
-    reset();
+             reset();
         }).catch(err => {
             showMessage({
                 ...messageOptions,
@@ -44,7 +45,7 @@ export const Login = () => {
 
             });
         }).finally(() => {
-
+            setAuth(true);
             setLoading(false);
         });
         console.log(data)
@@ -124,6 +125,7 @@ export const authStyles = StyleSheet.create({
         borderWidth: 1,
         paddingLeft: 12,
         paddingVertical: 10,
+        alignSelf:'center'
 
     },
     invalid: {

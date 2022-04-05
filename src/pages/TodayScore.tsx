@@ -13,7 +13,7 @@ interface Stadistics{
     percent_lose:number,
 }
 export const TodayScore = () => {
-    const { wordWin ,currentTab,token} = useContext(WordContext);
+    const { currentTab,token} = useContext(WordContext);
 
     const [stadistics, setStadistics] = useState<Stadistics>({
         win: 0,
@@ -47,9 +47,9 @@ export const TodayScore = () => {
             <Score5Letter word={words.word4} ></Score5Letter>
             <Score5Letter word={words.word5} ></Score5Letter> */}
             
-            <Text>La palabra del día es : {wordWin}</Text>
+            {/* <Text>La palabra del día es : {wordWin}</Text> */}
             <View style={{
-                width: '100%',
+                width:  Dimensions.get('window').width ,
                 flexDirection: 'row',
                 justifyContent: 'space-around',
                 alignItems: 'center',
